@@ -1,20 +1,43 @@
 using System;
 class MainClass {
   public static void Main() {
-    Genero g1 = new Genero(1, "Romance");
-    Genero g2 = new Genero(2, "Suspense");
-    Console.WriteLine(g1);
-    Console.WriteLine(g2);
-
-    Livro p1 = new Livro(1, "Bird Box", 19.70, 320, 10, g1);
-    Livro p2 = new Livro(2, "IT - A coisa", 25.50, 250, 15);
-    Livro p3 = new Livro(3, "A culpa é das estrelas", 15.40, 313, 5);
-    Livro p4 = new Livro(4, "O Duque e Eu", 19.97, 288, 20);
-    Console.WriteLine(p1);
-    Console.WriteLine(p2);
-    Console.WriteLine(p3);
-    Console.WriteLine(p4);
-    
+    int opcao = 999;
+    Console.Write("--- ");
+    Console.Write("Seja Bem-Vindo(a) a nossa Livraria");
+    Console.Write(" ---");
+    while (opcao != 0){
+      opcao = Menu();
+      switch(opcao){
+        case 0:
+          break;
+        case 1: 
+          ListarGenero(); 
+          break;
+        case 2:
+          InserirGenero();
+          break;
+        default:
+          Console.Write("Opção inválida! Tente novamente!");
+          break;
+      }
+    }
+    Console.WriteLine("Obrigado! E tenha uma boa leitura :)");
+  }
+  public static int Menu(){
+    Console.WriteLine("\n------------------------------------------");
+    Console.WriteLine("1 - Gênero - Listar");
+    Console.WriteLine("2 - Gênero - Inserir");
+    Console.WriteLine("0 - Sair");
+    Console.WriteLine("Escolha uma opção:");
+    int opcao = int.Parse(Console.ReadLine());
+    Console.WriteLine();
+    return opcao;
+  }
+  public static void ListarGenero(){
+    Console.WriteLine("------------ Lista de Gêneros ------------");
+  }
+  public static void InserirGenero(){
+    Console.WriteLine("------------ Adicionar Gênero ------------");
   }
 }
 
