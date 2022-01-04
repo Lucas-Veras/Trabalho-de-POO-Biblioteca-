@@ -40,7 +40,7 @@ class MainClass {
     Console.WriteLine("4 - Livros - Inserir");
     Console.WriteLine("5 - Carrinho");
     Console.WriteLine("0 - Sair");
-    Console.WriteLine("Escolha uma opção:");
+    Console.Write("Escolha uma opção: ");
     int opcao = int.Parse(Console.ReadLine());
     Console.WriteLine();
     return opcao;
@@ -59,5 +59,11 @@ class MainClass {
   }
   public static void InserirGenero(){
     Console.WriteLine("------------ Adicionar Gênero ------------");
+    Console.Write("Informe um ID para o gênero: ");
+    int id = int.Parse(Console.ReadLine());
+    Console.Write("Escreva o nome do gênero: ");
+    string nome = Console.ReadLine();
+    Genero x = new Genero(id, nome);
+    ngenero.Inserir(x);
   }
 }
