@@ -3,7 +3,7 @@ using System;
 class MainClass {
   public static NGenero ngenero = new NGenero();
   public static NLivro nlivro = new NLivro();
-  /*public static Venda venda = new Venda();*/
+  public static NVenda nvenda = new NVenda();
   public static void Main() {
     int opcao = 999;
     Console.Write("--- ");
@@ -81,14 +81,36 @@ class MainClass {
       Console.WriteLine(i);
     }
     Console.WriteLine();
-    Console.WriteLine("Deseja comprar algum livro? Se sim, digite o ID, se não digite 0 para voltar ao menu: ");
+    Console.WriteLine("Deseja comprar algum livro? Se sim, digite o ID, se nao digite 0 para voltar ao menu: ");
     int id = int.Parse(Console.ReadLine());
     if (id == 0){
       return;
     }
+    Livro l = nlivro.Listar(id);
+    if (l == null){
+      Console.WriteLine("ID inválido, tente efetuar as operações novamente");
+      return;
+    }
     else{
-      Livro l = nlivro.Listar(id);
-      Venda v = new Venda(l.GetId(), l.GetNome(), l.GetPreco(), l.GetQtd());
+      Console.WriteLine("Qual a quantidade que deseja adicionar? ");
+      int qtd = int.Parse(Console.ReadLine());
+      Venda v = new Venda(l.GetId(), l.GetNome(), l.GetPreco(), qtd);
+      nvenda.Inserir(v);
+      Console.WriteLine("Gostaria de adicionar mais algum livro? Se sim, digite o ID, se nao, digite 0: ");
+      id = int.Parse(Console.ReadLine());
+      if (id == 0) return;
+      while(id != 0){
+        l = nlivro.Listar(id);
+        Console.WriteLine("Qual a quantidade que deseja adicionar? ");
+        qtd = int.Parse(Console.ReadLine());
+        v = new Venda(l.GetId(), l.GetNome(), l.GetPreco(), qtd);
+        nvenda.Inserir(v);
+        Console.WriteLine("Gostaria de adicionar mais algum livro? Se sim, digite o ID, se nao, digite 0: ");
+        id = int.Parse(Console.ReadLine());
+        if (id == 0) return;
+        Console.WriteLine("ID inválido, tente efetuar as operações novamente");
+        return;
+      }
     }
   }
   public static void InserirLivro(){
@@ -116,7 +138,15 @@ class MainClass {
     }
   }
   public static void Carrinho(){
-    int total = 0;
-    Console.WriteLine($"Total: R${total}");
+    Console.WriteLine("------------ Carrinho ------------");
+    Venda[] v = nvenda.Listar();
+    if (v.Length == 0){
+      Console.WriteLine("Nenhum livro no carrinho");
+      return;
+    }
+    foreach (Venda i in v){
+      Console.WriteLine(i);
+    }
+    Console.WriteLine();
   }
 }

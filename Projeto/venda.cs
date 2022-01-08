@@ -1,5 +1,3 @@
-using System;
-
 class Venda{
     private int id, qtd;
     private string nome;
@@ -35,5 +33,8 @@ class Venda{
     }
     public int GetQtd(){
         return qtd;
+    }
+    public override string ToString(){
+        return id + " - " + nome + " | Preco: R$" + preco.ToString("0.00") + " | Quantidade: " + qtd;
     }
 }
