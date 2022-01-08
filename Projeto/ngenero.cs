@@ -16,10 +16,10 @@ class NGenero{
     Array.Copy(generos, x, qtdGenero);
     return x;
   }
-  public Genero[] Listar(int id){
+  public Genero Listar(int id){
     for (int i = 0; i < qtdGenero; i++){
       if (generos[i].GetId() == id){
-        return generos;
+        return generos[i];
       }
     }
     return null;

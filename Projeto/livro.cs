@@ -52,7 +52,7 @@ class Livro {
   public int GetQtd(){
     return qtd;
   }
-  public Genero GetGenero(Genero genero){
+  public Genero GetGenero(){
     return genero;
   }
 

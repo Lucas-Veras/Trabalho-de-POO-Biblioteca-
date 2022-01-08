@@ -1,10 +1,9 @@
 using System;
 
 class Genero {
-  private int id;
+  private int id, qtdLivros, ll;
   private string nome;
   private Livro[] livros = new Livro[10];
-  private int qtdLivros;
   public Genero(int id, string nome){
     this.id = id;
     this.nome = nome;
@@ -23,10 +22,18 @@ class Genero {
   public string GetNome(){
     return nome;
   }
-  public Livro[] ListarLivros(){
+  public Livro[] Listar(){
     Livro[] y = new Livro[qtdLivros];
     Array.Copy(livros, y, qtdLivros);
     return y;
+  }
+  private int Indice(Livro l){
+  for(int i = 0; i < ll; i++){
+    if(livros[i] == l){
+      return i;
+    }
+  }
+  return -1;
   }
   public void InserirLivro(Livro x){
     if (qtdLivros == livros.Length){
@@ -34,6 +41,16 @@ class Genero {
     }
     livros[qtdLivros] = x;
     qtdLivros++;
+  }
+  public void ExcluirLivro(Livro x){
+    int ind = Indice(x);
+    if (ind == -1){
+      return;
+    }
+    for(int i = ind; i < ll - 1; i++){
+      livros[i] = livros[i+1];
+    }
+    ll--;
   }
 
   public override string ToString(){

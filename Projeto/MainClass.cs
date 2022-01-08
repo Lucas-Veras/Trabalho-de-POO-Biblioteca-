@@ -2,6 +2,8 @@ using System;
 
 class MainClass {
   public static NGenero ngenero = new NGenero();
+  public static NLivro nlivro = new NLivro();
+  /*public static Venda venda = new Venda();*/
   public static void Main() {
     int opcao = 999;
     Console.Write("--- ");
@@ -19,11 +21,13 @@ class MainClass {
           InserirGenero();
           break;
         case 3:
+          ListarLivro();
           break;
         case 4:
+          InserirLivro();
           break;
         case 5:
-          
+          Carrinho();
           break;
         default:
           Console.Write("Opção inválida! Tente novamente!");
@@ -65,5 +69,54 @@ class MainClass {
     string nome = Console.ReadLine();
     Genero x = new Genero(id, nome);
     ngenero.Inserir(x);
+  }
+  public static void ListarLivro(){
+    Console.WriteLine("------------ Lista de Livros ------------");
+    Livro[] z = nlivro.Listar();
+    if (z.Length == 0){
+    Console.WriteLine("Nenhum livro cadastrado");
+    return;
+    }
+    foreach (Livro i in z){
+      Console.WriteLine(i);
+    }
+    Console.WriteLine();
+    Console.WriteLine("Deseja comprar algum livro? Se sim, digite o ID, se não digite 0 para voltar ao menu: ");
+    int id = int.Parse(Console.ReadLine());
+    if (id == 0){
+      return;
+    }
+    else{
+      Livro l = nlivro.Listar(id);
+      Venda v = new Venda(l.GetId(), l.GetNome(), l.GetPreco(), l.GetQtd());
+    }
+  }
+  public static void InserirLivro(){
+    Console.WriteLine("------------ Adicionar Livro ------------");
+    Console.WriteLine("Informe o id do livro: ");
+    int id = int.Parse(Console.ReadLine());
+    Console.Write("Informe o nome do livro: ");
+    string nome = Console.ReadLine();
+    Console.Write("Informe o seu preço: ");
+    double preco = double.Parse(Console.ReadLine());
+    Console.Write("Informe a sua quantidade de paginas: ");
+    int paginas = int.Parse(Console.ReadLine());
+    Console.Write("Informe a quantidade que entrará em estoque: ");
+    int qtd = int.Parse(Console.ReadLine());
+    Console.Write("Informe o gênero do livro(caso não haja, digite 0): ");
+    int generoid = int.Parse(Console.ReadLine());
+    if (generoid == 0){
+      Livro x = new Livro(id, nome, preco, paginas, qtd);
+      nlivro.Inserir(x);
+    }
+    else{
+      Genero g = ngenero.Listar(generoid);
+      Livro x = new Livro(id, nome, preco, paginas, qtd, g);
+      nlivro.Inserir(x);
+    }
+  }
+  public static void Carrinho(){
+    int total = 0;
+    Console.WriteLine($"Total: R${total}");
   }
 }
