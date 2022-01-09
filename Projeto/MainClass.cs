@@ -115,7 +115,7 @@ class MainClass {
   }
   public static void InserirLivro(){
     Console.WriteLine("------------ Adicionar Livro ------------");
-    Console.WriteLine("Informe o id do livro: ");
+    Console.Write("Informe o id do livro: ");
     int id = int.Parse(Console.ReadLine());
     Console.Write("Informe o nome do livro: ");
     string nome = Console.ReadLine();
