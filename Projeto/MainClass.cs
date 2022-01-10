@@ -305,7 +305,8 @@ if (finalizar == 1)
             int codigoDeSeguranca = int.Parse(Console.ReadLine());
             Console.WriteLine("Em quantas parcelas deseja pagar?");
             int parcelas = int.Parse(Console.ReadLine());
-            Console.WriteLine($"Você pagará {total}X de {total}");
+            double valorParcela = total/parcelas;
+            Console.WriteLine($"Você pagará {parcelas}X de {valorParcela:0.00}");
             Console.WriteLine("Deseja finalizar sua compra?\n1 - Sim\n2 - Não");
         }
     }
