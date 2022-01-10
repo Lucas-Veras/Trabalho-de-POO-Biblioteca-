@@ -307,8 +307,11 @@ if (finalizar == 1)
             int validade = int.Parse(Console.ReadLine());
             Console.WriteLine("Digite o código de segurança, são 3 digitos:");
             int codigoDeSeguranca = int.Parse(Console.ReadLine());
-            Console.WriteLine($"O valor a pagar no débito é R${total}, deseja finalizar?\n1 - Sim\n2 - Não");
-            Console.WriteLine("Obrigado pela compra e volte sempre :)");
+            Console.WriteLine($"O valor a pagar no débito é R${total}, deseja finalizar a compra?\n1 - Sim\n2 - Não");
+            int finalizar2 = int.Parse(Console.ReadLine());
+            if (finalizar2 == 1){
+              Console.WriteLine("Obrigado pela compra e volte sempre :)");
+            } 
         }
         if (metodo == 2)
         {
@@ -320,14 +323,23 @@ if (finalizar == 1)
             int codigoDeSeguranca = int.Parse(Console.ReadLine());
             Console.WriteLine("Em quantas parcelas deseja pagar?");
             int parcelas = int.Parse(Console.ReadLine());
-            Console.WriteLine($"Você pagará {total}X de {total}");
+            double valorParcelas = total/parcelas;
+            Console.WriteLine($"Você pagará {parcelas}X de R${valorParcelas:0.00}");
             Console.WriteLine("Deseja finalizar sua compra?\n1 - Sim\n2 - Não");
+            int finalizar2 = int.Parse(Console.ReadLine());
+            if (finalizar2 == 1){
+              Console.WriteLine("Muito obrigado pela compra e volte sempre! :)");
+            }
         }
     }
     if (escolha == 2)
     {
-        Console.WriteLine($"O valor final é {total}, faça um pix para o nosso email: livraria@gmail.com");
-        Console.WriteLine("E obrigado pela compra :)");
+        Console.WriteLine($"O valor final é R${total}, deseja finalizar a compra?\n1 - Sim\n2 - Não");
+        int finalizar2 = int.Parse(Console.ReadLine());
+        if (finalizar2 == 1){
+          Console.WriteLine($"Faça um pix de R${total} para o nosso email: livraria@gmail.com");
+          Console.WriteLine("E Muito obrigado pela compra, volte sempre! :)");
+        }
     }
     if (escolha == 3)
     {
@@ -339,9 +351,12 @@ if (finalizar == 1)
         int boleto4 = randNum.Next(100000000, 999999999);
         int boleto5 = randNum.Next(100000000, 999999999);
         int boleto6 = randNum.Next(100, 999);
-        Console.WriteLine($"Total a pagar: R${total}");
-        Console.WriteLine($"Código do boleto para pagar: {boleto}{boleto2}{boleto3}{boleto3}{boleto4}{boleto5}{boleto6}");
-        Console.WriteLine("E muito obrigado pela compra :)");
+        Console.WriteLine($"Total a pagar: R${total}, deseja finalizar a compra?\n1 - Sim\n2 - Não");
+        int finalizar2 = int.Parse(Console.ReadLine());
+        if (finalizar2 == 1){
+          Console.WriteLine($"Código do boleto para pagar: {boleto}{boleto2}{boleto3}{boleto3}{boleto4}{boleto5}{boleto6}");
+          Console.WriteLine("E Muito obrigado pela compra, volte sempre! :)");
+        }
     }
 }
 }
