@@ -1,12 +1,13 @@
-using System;
+    using System;
 
-class MainClass
-{
-  public static NGenero ngenero = new NGenero();
-  public static NLivro nlivro = new NLivro();
-  public static NVenda nvenda = new NVenda();
-  public static void Main()
-  {
+    class MainClass
+    {
+    public static NGenero ngenero = new NGenero();
+    public static NLivro nlivro = new NLivro();
+    public static List<Venda> vendas = new List<Venda>();
+
+    public static void Main()
+    {
     int opcao = 999;
     Console.Write("--- ");
     Console.Write("Seja Bem-Vindo(a) a nossa Livraria");
@@ -51,9 +52,9 @@ class MainClass
         }
     }
     Console.WriteLine("Obrigado! E tenha uma boa leitura :)");
-}
-public static int Menu()
-{
+    }
+    public static int Menu()
+    {
     Console.WriteLine("\n------------------------------------------");
     Console.WriteLine("1 - Gênero - Listar");
     Console.WriteLine("2 - Gênero - Inserir");
@@ -69,9 +70,9 @@ public static int Menu()
     int opcao = int.Parse(Console.ReadLine());
     Console.WriteLine();
     return opcao;
-}
-public static void ListarGenero()
-{
+    }
+    public static void ListarGenero()
+    {
     Console.WriteLine("------------ Lista de Gêneros ------------");
     Genero[] cs = ngenero.Listar();
     if (cs.Length == 0)
@@ -84,9 +85,9 @@ public static void ListarGenero()
         Console.WriteLine(i);
     }
     Console.WriteLine();
-}
-public static void InserirGenero()
-{
+    }
+    public static void InserirGenero()
+    {
     Console.WriteLine("------------ Adicionar Gênero ------------");
     Console.Write("Informe um ID para o gênero: ");
     int id = int.Parse(Console.ReadLine());
@@ -94,9 +95,9 @@ public static void InserirGenero()
     string nome = Console.ReadLine();
     Genero x = new Genero(id, nome);
     ngenero.Inserir(x);
-}
-public static void AtualizarGenero()
-{
+    }
+    public static void AtualizarGenero()
+    {
     Console.WriteLine("----------- Atualização de Gêneros -----------");
     ListarGenero();
     Console.Write("Informe o ID do gênero a ser alterado: ");
@@ -105,18 +106,18 @@ public static void AtualizarGenero()
     string nome = Console.ReadLine();
     Genero x = new Genero(id, nome);
     ngenero.Atualizar(x);
-}
-public static void ExcluirGenero()
-{
+    }
+    public static void ExcluirGenero()
+    {
     Console.WriteLine("----------- Exclusão de Gêneros -----------");
     ListarGenero();
     Console.Write("Informe o ID do gênero a ser excluído: ");
     int id = int.Parse(Console.ReadLine());
     Genero x = ngenero.Listar(id);
     ngenero.Excluir(x);
-}
-public static void ListarLivro()
-{
+    }
+    public static void ListarLivro()
+    {
     Console.WriteLine("------------ Lista de Livros ------------");
     Livro[] z = nlivro.Listar();
     if (z.Length == 0)
@@ -146,7 +147,7 @@ public static void ListarLivro()
         Console.WriteLine("Qual a quantidade que deseja adicionar? ");
         int qtd = int.Parse(Console.ReadLine());
         Venda v = new Venda(l.GetId(), l.GetNome(), l.GetPreco(), qtd);
-        nvenda.Inserir(v);
+        vendas.Add(v);
         Console.WriteLine("Gostaria de adicionar mais algum livro? Se sim, digite o ID, se nao, digite 0: ");
         id = int.Parse(Console.ReadLine());
         if (id == 0) return;
@@ -156,7 +157,8 @@ public static void ListarLivro()
             Console.WriteLine("Qual a quantidade que deseja adicionar? ");
             qtd = int.Parse(Console.ReadLine());
             v = new Venda(l.GetId(), l.GetNome(), l.GetPreco(), qtd);
-            nvenda.Inserir(v);
+            vendas.Add(v);
+            //nvenda.Inserir(v);
             Console.WriteLine("Gostaria de adicionar mais algum livro? Se sim, digite o ID, se nao, digite 0: ");
             id = int.Parse(Console.ReadLine());
             if (id == 0) return;
@@ -164,9 +166,9 @@ public static void ListarLivro()
             return;
         }
     }
-}
-public static void ListarLivro2()
-{
+    }
+    public static void ListarLivro2()
+    {
     Console.WriteLine("------------ Lista de Livros ------------");
     Livro[] z = nlivro.Listar();
     if (z.Length == 0)
@@ -179,9 +181,9 @@ public static void ListarLivro2()
         Console.WriteLine(i);
     }
     Console.WriteLine();
-}
-public static void InserirLivro()
-{
+    }
+    public static void InserirLivro()
+    {
     Console.WriteLine("------------ Adicionar Livro ------------");
     Console.Write("Informe o id do livro: ");
     int id = int.Parse(Console.ReadLine());
@@ -206,9 +208,9 @@ public static void InserirLivro()
         Livro x = new Livro(id, nome, preco, paginas, qtd, g);
         nlivro.Inserir(x);
     }
-}
-public static void AtualizarLivro()
-{
+    }
+    public static void AtualizarLivro()
+    {
     Console.WriteLine("----------- Atualização de Livros -----------");
     ListarLivro2();
     Console.Write("Informe o id do livro para ser atualizado: ");
@@ -234,33 +236,31 @@ public static void AtualizarLivro()
         Livro x = new Livro(id, nome, preco, paginas, qtd, g);
         nlivro.Atualizar(x);
     }
-}
-public static void ExcluirLivro()
-{
+    }
+    public static void ExcluirLivro()
+    {
     Console.WriteLine("----------- Exclusão de Livros -----------");
     ListarLivro2();
     Console.Write("Informe o ID do Livro a ser excluído: ");
     int id = int.Parse(Console.ReadLine());
     Livro x = nlivro.Listar(id);
     nlivro.Excluir(x);
-}
-public static void Carrinho()
-{
+    }
+    public static void Carrinho()
+    {
     Console.WriteLine("------------ Carrinho ------------");
-    Venda[] v = nvenda.Listar();
-    if (v.Length == 0)
+    if (vendas.Count == 0)
     {
         Console.WriteLine("Nenhum livro no carrinho");
         return;
     }
-    foreach (Venda i in v)
+    double total = 0;
+    foreach(Venda i in vendas)
     {
         Console.WriteLine(i);
+        total += i.GetPreco() * i.GetQtd();
     }
-    // foreach (Venda.GetPreco() i in v){
-  //       Console.WriteLine();
-//     }
-    Console.WriteLine();
+    Console.WriteLine($"Total: R${total}");
     Console.WriteLine("Deseja finalizar a sua compra? 1 - Sim | 2 - Não");
     int finalizar = int.Parse(Console.ReadLine());
     if (finalizar == 1)
@@ -271,6 +271,15 @@ public static void Carrinho()
         Console.WriteLine("3 - Boleto");
         Console.WriteLine("Escolha seu método de pagamento: (caso deseje comprar mais algum livro digite 0 para voltar para o menu)");
         int escolha = int.Parse(Console.ReadLine());
+        if (escolha == 0){
+
+        }
+        Livro[] x = nlivro.Listar();
+        foreach (Venda i in vendas){
+            Livro l = nlivro.Listar(i.GetId());
+            l.SetQtd(l.GetQtd()-i.GetQtd());
+        }
+        vendas.Clear();
         if (escolha == 1)
         {
             Console.WriteLine("1 - Débito\n2 - Crédito");
@@ -283,12 +292,8 @@ public static void Carrinho()
                 int validade = int.Parse(Console.ReadLine());
                 Console.WriteLine("Digite o código de segurança, são 3 digitos:");
                 int codigoDeSeguranca = int.Parse(Console.ReadLine());
-                //Console.WriteLine($"O valor a pagar no débito é R${}, deseja finalizar?\n1 - Sim\n2 - Não");
-                int escolha2 = int.Parse(Console.ReadLine());
-                if (escolha2 == 1)
-                {
-                    Console.WriteLine("Obrigado pela compra e volte sempre :)");
-                }
+                Console.WriteLine($"O valor a pagar no débito é R${total}, deseja finalizar?\n1 - Sim\n2 - Não");
+                Console.WriteLine("Obrigado pela compra e volte sempre :)");
             }
             if (metodo == 2)
             {
@@ -300,13 +305,13 @@ public static void Carrinho()
                 int codigoDeSeguranca = int.Parse(Console.ReadLine());
                 Console.WriteLine("Em quantas parcelas deseja pagar?");
                 int parcelas = int.Parse(Console.ReadLine());
-              //   Console.WriteLine("$Você pagará {}X de {}");
+                Console.WriteLine($"Você pagará {total}X de {total}");
                 Console.WriteLine("Deseja finalizar sua compra?\n1 - Sim\n2 - Não");
             }
         }
         if (escolha == 2)
         {
-          //  Console.WriteLine($"O valor final é {}, faça um pix para o nosso email: livraria@gmail.com");
+            Console.WriteLine($"O valor final é {total}, faça um pix para o nosso email: livraria@gmail.com");
             Console.WriteLine("E obrigado pela compra :)");
         }
         if (escolha == 3)
@@ -319,11 +324,11 @@ public static void Carrinho()
             int boleto4 = randNum.Next(100000000, 999999999);
             int boleto5 = randNum.Next(100000000, 999999999);
             int boleto6 = randNum.Next(100, 999);
-            Console.WriteLine("Total a pagar: R$");
+            Console.WriteLine($"Total a pagar: R${total}");
             Console.WriteLine($"Código do boleto para pagar: {boleto}{boleto2}{boleto3}{boleto3}{boleto4}{boleto5}{boleto6}");
             Console.WriteLine("E muito obrigado pela compra :)");
         }
     }
-  }
-}
+    }
+    }
 

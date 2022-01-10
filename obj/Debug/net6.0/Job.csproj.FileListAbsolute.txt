@@ -1,0 +1,15 @@
+D:\Lucas\Facul\Algoritmos\Trabalho\Job\bin\Debug\net6.0\Job.exe
+D:\Lucas\Facul\Algoritmos\Trabalho\Job\bin\Debug\net6.0\Job.deps.json
+D:\Lucas\Facul\Algoritmos\Trabalho\Job\bin\Debug\net6.0\Job.runtimeconfig.json
+D:\Lucas\Facul\Algoritmos\Trabalho\Job\bin\Debug\net6.0\Job.dll
+D:\Lucas\Facul\Algoritmos\Trabalho\Job\bin\Debug\net6.0\ref\Job.dll
+D:\Lucas\Facul\Algoritmos\Trabalho\Job\bin\Debug\net6.0\Job.pdb
+D:\Lucas\Facul\Algoritmos\Trabalho\Job\obj\Debug\net6.0\Job.csproj.AssemblyReference.cache
+D:\Lucas\Facul\Algoritmos\Trabalho\Job\obj\Debug\net6.0\Job.GeneratedMSBuildEditorConfig.editorconfig
+D:\Lucas\Facul\Algoritmos\Trabalho\Job\obj\Debug\net6.0\Job.AssemblyInfoInputs.cache
+D:\Lucas\Facul\Algoritmos\Trabalho\Job\obj\Debug\net6.0\Job.AssemblyInfo.cs
+D:\Lucas\Facul\Algoritmos\Trabalho\Job\obj\Debug\net6.0\Job.csproj.CoreCompileInputs.cache
+D:\Lucas\Facul\Algoritmos\Trabalho\Job\obj\Debug\net6.0\Job.dll
+D:\Lucas\Facul\Algoritmos\Trabalho\Job\obj\Debug\net6.0\ref\Job.dll
+D:\Lucas\Facul\Algoritmos\Trabalho\Job\obj\Debug\net6.0\Job.pdb
+D:\Lucas\Facul\Algoritmos\Trabalho\Job\obj\Debug\net6.0\Job.genruntimeconfig.cache

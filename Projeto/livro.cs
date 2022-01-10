@@ -8,7 +8,6 @@ class Livro
   private int paginas;
   private int qtd;
   private Genero genero;
-
   public Livro(int id, string nome, double preco, int paginas, int qtd)
   {
       this.id = id;

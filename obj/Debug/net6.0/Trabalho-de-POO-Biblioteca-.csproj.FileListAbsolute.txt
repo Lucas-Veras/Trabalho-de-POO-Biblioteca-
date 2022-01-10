@@ -1,0 +1,15 @@
+D:\Lucas\Facul\Algoritmos\Trabalho\Trabalho-de-POO-Biblioteca-\bin\Debug\net6.0\Trabalho-de-POO-Biblioteca-.exe
+D:\Lucas\Facul\Algoritmos\Trabalho\Trabalho-de-POO-Biblioteca-\bin\Debug\net6.0\Trabalho-de-POO-Biblioteca-.deps.json
+D:\Lucas\Facul\Algoritmos\Trabalho\Trabalho-de-POO-Biblioteca-\bin\Debug\net6.0\Trabalho-de-POO-Biblioteca-.runtimeconfig.json
+D:\Lucas\Facul\Algoritmos\Trabalho\Trabalho-de-POO-Biblioteca-\bin\Debug\net6.0\Trabalho-de-POO-Biblioteca-.dll
+D:\Lucas\Facul\Algoritmos\Trabalho\Trabalho-de-POO-Biblioteca-\bin\Debug\net6.0\ref\Trabalho-de-POO-Biblioteca-.dll
+D:\Lucas\Facul\Algoritmos\Trabalho\Trabalho-de-POO-Biblioteca-\bin\Debug\net6.0\Trabalho-de-POO-Biblioteca-.pdb
+D:\Lucas\Facul\Algoritmos\Trabalho\Trabalho-de-POO-Biblioteca-\obj\Debug\net6.0\Trabalho-de-POO-Biblioteca-.csproj.AssemblyReference.cache
+D:\Lucas\Facul\Algoritmos\Trabalho\Trabalho-de-POO-Biblioteca-\obj\Debug\net6.0\Trabalho-de-POO-Biblioteca-.GeneratedMSBuildEditorConfig.editorconfig
+D:\Lucas\Facul\Algoritmos\Trabalho\Trabalho-de-POO-Biblioteca-\obj\Debug\net6.0\Trabalho-de-POO-Biblioteca-.AssemblyInfoInputs.cache
+D:\Lucas\Facul\Algoritmos\Trabalho\Trabalho-de-POO-Biblioteca-\obj\Debug\net6.0\Trabalho-de-POO-Biblioteca-.AssemblyInfo.cs
+D:\Lucas\Facul\Algoritmos\Trabalho\Trabalho-de-POO-Biblioteca-\obj\Debug\net6.0\Trabalho-de-POO-Biblioteca-.csproj.CoreCompileInputs.cache
+D:\Lucas\Facul\Algoritmos\Trabalho\Trabalho-de-POO-Biblioteca-\obj\Debug\net6.0\Trabalho-de-POO-Biblioteca-.dll
+D:\Lucas\Facul\Algoritmos\Trabalho\Trabalho-de-POO-Biblioteca-\obj\Debug\net6.0\ref\Trabalho-de-POO-Biblioteca-.dll
+D:\Lucas\Facul\Algoritmos\Trabalho\Trabalho-de-POO-Biblioteca-\obj\Debug\net6.0\Trabalho-de-POO-Biblioteca-.pdb
+D:\Lucas\Facul\Algoritmos\Trabalho\Trabalho-de-POO-Biblioteca-\obj\Debug\net6.0\Trabalho-de-POO-Biblioteca-.genruntimeconfig.cache
