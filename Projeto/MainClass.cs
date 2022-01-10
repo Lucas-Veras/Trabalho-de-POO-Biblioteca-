@@ -1,11 +1,11 @@
 using System;
 using System.Collections.Generic;
+
 class MainClass
 {
 public static NGenero ngenero = new NGenero();
 public static NLivro nlivro = new NLivro();
 public static List<Venda> vendas = new List<Venda>();
-
 public static void Main()
 {
 int opcao = 999;
@@ -158,12 +158,14 @@ else
         qtd = int.Parse(Console.ReadLine());
         v = new Venda(l.GetId(), l.GetNome(), l.GetPreco(), qtd);
         vendas.Add(v);
-        //nvenda.Inserir(v);
         Console.WriteLine("Gostaria de adicionar mais algum livro? Se sim, digite o ID, se nao, digite 0: ");
         id = int.Parse(Console.ReadLine());
         if (id == 0) return;
-        Console.WriteLine("ID inválido, tente efetuar as operações novamente");
+        Livro n = nlivro.Listar(id);
+        if (n == null){ 
+            Console.WriteLine("ID inválido, tente efetuar as operações novamente");
         return;
+        }
     }
 }
 }
@@ -261,8 +263,21 @@ foreach(Venda i in vendas)
     total += i.GetPreco() * i.GetQtd();
 }
 Console.WriteLine($"Total: R${total}");
-Console.WriteLine("Deseja finalizar a sua compra? 1 - Sim | 2 - Não");
+Console.WriteLine("Você deseja remover algum item do seu carrinho? 1 - Sim | 2 - Não");
 int finalizar = int.Parse(Console.ReadLine());
+if (finalizar == 1){
+    Console.WriteLine("Digite o ID do item que deseja remover: ");
+    int ide = int.Parse(Console.ReadLine());
+    foreach(Venda i in vendas){
+        if(i.GetId() == ide){
+            int indice = vendas.IndexOf(i);
+            vendas.RemoveAt(indice);
+            break;
+        }
+    }
+}
+Console.WriteLine("Deseja finalizar a sua compra? 1 - Sim | 2 - Não");
+finalizar = int.Parse(Console.ReadLine());
 if (finalizar == 1)
 {
     Console.WriteLine("Métodos de pagamento:");
@@ -305,8 +320,7 @@ if (finalizar == 1)
             int codigoDeSeguranca = int.Parse(Console.ReadLine());
             Console.WriteLine("Em quantas parcelas deseja pagar?");
             int parcelas = int.Parse(Console.ReadLine());
-            double valorParcela = total/parcelas;
-            Console.WriteLine($"Você pagará {parcelas}X de {valorParcela:0.00}");
+            Console.WriteLine($"Você pagará {total}X de {total}");
             Console.WriteLine("Deseja finalizar sua compra?\n1 - Sim\n2 - Não");
         }
     }
