@@ -1,5 +1,6 @@
 using System;
-
+using System.Collections.Generic;
+using System.Collections;
 class Livro
 {
   private int id;
@@ -80,5 +81,13 @@ class Livro
       {
           return id + " - " + nome + " | Preco: R$" + preco.ToString("0.00") + " | Gênero: " + genero + " | Paginas: " + paginas + " | Quantidade: " + qtd;
       }
+  }
+}
+
+class LivroIdComp : IComparer {
+  public int Compare(object x, object y){
+    Livro a = (Livro) x;
+    Livro b = (Livro) y;
+    return a.GetId().CompareTo(b.GetId());
   }
 }

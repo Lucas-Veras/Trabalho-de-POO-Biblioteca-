@@ -1,5 +1,5 @@
 using System;
-
+using System.Collections;
 class Venda
   {
     private int id, qtd;

@@ -1,5 +1,5 @@
 using System;
-
+using System.Collections;
 class NGenero
 {
   private Genero[] generos = new Genero[10];

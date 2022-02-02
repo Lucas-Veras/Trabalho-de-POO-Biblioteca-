@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 
 class Genero
 {
@@ -72,5 +73,13 @@ class Genero
   public override string ToString()
   {
       return id + " - " + nome;
+  }
+}
+
+class GeneroIdComp : IComparer {
+  public int Compare(object x, object y){
+    Genero a = (Genero) x;
+    Genero b = (Genero) y;
+    return a.GetId().CompareTo(b.GetId());
   }
 }

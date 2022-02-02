@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections;
 
 class MainClass
 {
@@ -75,6 +76,8 @@ public static void ListarGenero()
 {
 Console.WriteLine("------------ Lista de Gêneros ------------");
 Genero[] cs = ngenero.Listar();
+GeneroIdComp x = new GeneroIdComp();
+Array.Sort(cs,x);
 if (cs.Length == 0)
 {
     Console.WriteLine("Nenhum Gênero cadastrado");
@@ -120,6 +123,8 @@ public static void ListarLivro()
 {
 Console.WriteLine("------------ Lista de Livros ------------");
 Livro[] z = nlivro.Listar();
+LivroIdComp x = new LivroIdComp();
+Array.Sort(z,x);
 if (z.Length == 0)
 {
     Console.WriteLine("Nenhum livro cadastrado");
