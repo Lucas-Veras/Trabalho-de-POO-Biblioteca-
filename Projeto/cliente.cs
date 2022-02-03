@@ -1,0 +1,15 @@
+using System;
+using System.Collections.Generic;
+using System.Collections;
+
+class Cliente : IComparable<Cliente>{
+  public int Id { get; set; }
+  public string Nome { get; set; }
+  public DateTime Nascimento { get; set; }
+  public int CompareTo(Cliente obj){
+    return this.Nome.CompareTo(obj.Nome);
+  }
+  public override string ToString(){
+    return $"{Id} - {Nome} - {Nascimento.ToString("dd/mm/yyyy")}";
+  }
+}
