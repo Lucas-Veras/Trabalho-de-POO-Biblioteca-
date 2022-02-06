@@ -13,12 +13,11 @@ class MainClass
   public static void Main()
   { 
    // Thread.CurrentThread.CurrentCulture = new CultureInfo("pt-BR");
-    int opcao = 999;
-    Console.Write("--- ");
-    Console.Write("Seja Bem-Vindo(a) a nossa Livraria");
-    Console.Write(" ---");
-    while (opcao != 0)
-    {
+    int opcao = 0;
+    int perfil = 0;
+    Console.Write("--- Seja Bem-Vindo(a) a nossa Livraria ---");
+    do {
+      try{
         opcao = Menu();
         switch (opcao)
         {
@@ -66,10 +65,14 @@ class MainClass
                 Carrinho();
                 break;
             default:
-                Console.Write("Opção inválida! Tente novamente!");
+                Console.WriteLine("Opção invalida, tente novamente.");
                 break;
         }
     }
+    catch(Exception erro){
+      Console.WriteLine(erro.Message);
+    }
+  } while(opcao != 0);
     Console.WriteLine("Obrigado! E tenha uma boa leitura :)");
   }
   public static int Menu()
