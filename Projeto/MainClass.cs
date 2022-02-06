@@ -12,7 +12,7 @@ class MainClass
   public static NCliente ncliente = new NCliente();
   public static void Main()
   { 
-    Thread.CurrentThread.CurrentCulture = new CultureInfo("pt-BR");
+   // Thread.CurrentThread.CurrentCulture = new CultureInfo("pt-BR");
     int opcao = 999;
     Console.Write("--- ");
     Console.Write("Seja Bem-Vindo(a) a nossa Livraria");

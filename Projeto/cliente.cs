@@ -10,6 +10,6 @@ class Cliente : IComparable<Cliente>{
     return this.Nome.CompareTo(obj.Nome);
   }
   public override string ToString(){
-    return $"{Id} - {Nome} - {Nascimento.ToString("dd/mm/yyyy")}";
+    return $"{Id} - {Nome} - {Nascimento.ToString("dd/MM/yyyy")}";
   }
 }
