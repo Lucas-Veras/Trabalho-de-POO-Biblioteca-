@@ -8,7 +8,7 @@ class MainClass
 {
   public static NGenero ngenero = new NGenero();
   public static NLivro nlivro = new NLivro();
-  public static List<Venda> vendas = new List<Venda>();
+//  public static List<Venda> vendas = new List<Venda>();
   public static NCliente ncliente = new NCliente();
   private static Cliente clienteLogin = null;
   public static void Main()
@@ -65,9 +65,9 @@ class MainClass
               case 12:
                   ExcluirCliente();
                   break;
-              case 13:
+          /*    case 13:
                   Carrinho();
-                  break;
+                  break;*/
               case 20:
                   perfil = 0; 
                   break;
@@ -152,7 +152,7 @@ class MainClass
   Console.WriteLine("11 - Cliente - Atualizar");
   Console.WriteLine("12 - Cliente - Excluir");
 
-  Console.WriteLine("13 - Carrinho");
+//  Console.WriteLine("13 - Carrinho");
   Console.WriteLine("20 - Voltar ");
   Console.WriteLine("0  - Sair");
     Console.WriteLine("------------------------------------------");
@@ -259,6 +259,7 @@ class MainClass
       Console.WriteLine(i);
   }
   Console.WriteLine();
+  /*
   Console.WriteLine("Deseja comprar algum livro? Se sim, digite o ID, se nao digite 0 para voltar ao menu: ");
   int id = int.Parse(Console.ReadLine());
   if (id == 0)
@@ -296,7 +297,7 @@ class MainClass
           return;
           }
       }
-  }
+  }*/
   }
   public static void ListarLivro2()
   {
@@ -377,6 +378,8 @@ class MainClass
   Livro x = nlivro.Listar(id);
   nlivro.Excluir(x);
   }
+
+  /*
   public static void Carrinho()
   {
   Console.WriteLine("------------ Carrinho ------------");
@@ -488,7 +491,7 @@ class MainClass
           }
         }
       }
-    }
+    }*/
 
 
 

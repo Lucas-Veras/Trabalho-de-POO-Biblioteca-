@@ -1,4 +1,4 @@
-using System;
+/*using System;
 using System.Collections.Generic;
 using System.Collections;
 
@@ -53,3 +53,4 @@ class Venda
         return id + " - " + nome + " | Preco: R$" + preco.ToString("0.00") + " | Quantidade: " + qtd;
     }
 }
+*/
