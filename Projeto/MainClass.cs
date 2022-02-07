@@ -10,6 +10,7 @@ class MainClass
   public static NLivro nlivro = new NLivro();
   public static List<Venda> vendas = new List<Venda>();
   public static NCliente ncliente = new NCliente();
+  private static Cliente clienteLogin = null;
   public static void Main()
   { 
    // Thread.CurrentThread.CurrentCulture = new CultureInfo("pt-BR");
@@ -18,64 +19,123 @@ class MainClass
     Console.Write("--- Seja Bem-Vindo(a) a nossa Livraria ---");
     do {
       try{
-        opcao = Menu();
-        switch (opcao)
-        {
-            case 0:
-                break;
-            case 1:
-                ListarGenero();
-                break;
-            case 2:
-                InserirGenero();
-                break;
-            case 3:
-                AtualizarGenero();
-                break;
-            case 4:
-                ExcluirGenero();
-                break;
-            case 5:
-                ListarLivro();
-                break;
-            case 6:
-                InserirLivro();
-                break;
-            case 7:
-                AtualizarLivro();
-                break;
-            case 8:
-                ExcluirLivro();
-                break;
-
-            case 9:
-                ListarCliente();
-                break;
-            case 10:
-                InserirCliente();
-                break;
-            case 11:
-                AtualizarCliente();
-                break;
-            case 12:
-                ExcluirCliente();
-                break;
-
-            case 13:
-                Carrinho();
-                break;
-            default:
-                Console.WriteLine("Opção invalida, tente novamente.");
-                break;
+        if (perfil == 0){
+          opcao = 0;
+          perfil = MenuUsuario();
+        }
+        if (perfil == 1){
+          opcao = MenuVendedor();
+          switch (opcao)
+          {
+              case 0:
+                  break;
+              case 1:
+                  ListarGenero();
+                  break;
+              case 2:
+                  InserirGenero();
+                  break;
+              case 3:
+                  AtualizarGenero();
+                  break;
+              case 4:
+                  ExcluirGenero();
+                  break;
+              case 5:
+                  ListarLivro();
+                  break;
+              case 6:
+                  InserirLivro();
+                  break;
+              case 7:
+                  AtualizarLivro();
+                  break;
+              case 8:
+                  ExcluirLivro();
+                  break;
+              case 9:
+                  ListarCliente();
+                  break;
+              case 10:
+                  InserirCliente();
+                  break;
+              case 11:
+                  AtualizarCliente();
+                  break;
+              case 12:
+                  ExcluirCliente();
+                  break;
+              case 13:
+                  Carrinho();
+                  break;
+              case 20:
+                  perfil = 0; 
+                  break;
+              default:
+                  Console.WriteLine("Opção invalida, tente novamente.");
+                  break;
+          }
+        }
+        if (perfil == 2 && clienteLogin == null){
+          opcao = MenuClienteLogin();
+          switch (opcao)
+          {
+              case 1:
+              ClienteLogin();
+                  break;
+              case 20:
+                  perfil = 0;
+                  break;
+          }
+        }
+        if (perfil == 2 && clienteLogin != null){
+          opcao = MenuClienteLogout();
+          switch (opcao)
+          {
+              case 1:
+                  ClienteVendaListar();
+                  break;
+              case 2:
+                  ClienteProdutoListar();
+                  break;
+              case 3:
+                  ClienteProdutoInserir();
+                  break;
+              case 4:
+                  ClienteCarrinhoVisualizar();
+                  break;
+              case 5:
+                  ClienteCarrinhoLimpar();
+                  break;
+              case 6:
+                  ClienteCarrinhoComprar();
+                  break;
+              case 20:
+                  ClienteLogout();
+                  break;    
+          }
         }
     }
     catch(Exception erro){
       Console.WriteLine(erro.Message);
     }
   } while(opcao != 0);
-    Console.WriteLine("Obrigado! E tenha uma boa leitura :)");
+    Console.WriteLine("Obrigado! Volte sempre :)");
   }
-  public static int Menu()
+  public static int MenuUsuario()
+  {
+  Console.WriteLine("\n------------------------------------------");
+  Console.WriteLine("01 - Entrar como Vendedor");
+  Console.WriteLine("02 - Entrar como Cliente");
+  Console.WriteLine("0  - Sair");
+  Console.WriteLine("------------------------------------------");
+  Console.Write("Escolha uma opção: ");
+  int opcao = int.Parse(Console.ReadLine());
+  Console.WriteLine();
+  return opcao;
+  }
+  
+  public static int MenuVendedor()
   {
   Console.WriteLine("\n------------------------------------------");
   Console.WriteLine("01 - Gênero - Listar");
@@ -93,12 +153,49 @@ class MainClass
   Console.WriteLine("12 - Cliente - Excluir");
 
   Console.WriteLine("13 - Carrinho");
-  Console.WriteLine("0 - Sair");
+  Console.WriteLine("20 - Voltar ");
+  Console.WriteLine("0  - Sair");
+    Console.WriteLine("------------------------------------------");
   Console.Write("Escolha uma opção: ");
   int opcao = int.Parse(Console.ReadLine());
   Console.WriteLine();
   return opcao;
   }
+
+  public static int MenuClienteLogin()
+  {
+  Console.WriteLine("\n------------------------------------------");
+  Console.WriteLine("01 - Login");
+  Console.WriteLine("20 - Voltar");
+  Console.WriteLine("0  - Sair");
+  Console.WriteLine("\n------------------------------------------");
+  Console.Write("Escolha uma opção: ");
+  int opcao = int.Parse(Console.ReadLine());
+  Console.WriteLine();
+  return opcao;
+  }
+
+  public static int MenuClienteLogout()
+  {
+  Console.WriteLine("\n------------------------------------------");
+  Console.WriteLine("Bem vindo(a), "+ clienteLogin.Nome);
+  Console.WriteLine("------------------------------------------");
+  Console.WriteLine("01 - Listar minhas compras");
+  Console.WriteLine("02 - Listar produtos");
+  Console.WriteLine("03 - Inserir um produto no carrinho");
+  Console.WriteLine("04 - Visualizar o carrinho");
+  Console.WriteLine("05 - Limpar o carrinho");
+  Console.WriteLine("06 - Confirmar a compra");
+  Console.WriteLine("20 - Logout");
+  Console.WriteLine("0  - Sair");
+  Console.WriteLine("\n------------------------------------------");
+  Console.Write("Escolha uma opção: ");
+  int opcao = int.Parse(Console.ReadLine());
+  Console.WriteLine();
+  return opcao;
+  }
+
+
   public static void ListarGenero()
   {
   Console.WriteLine("------------ Lista de Gêneros ------------");
@@ -444,6 +541,35 @@ class MainClass
     Cliente x = ncliente.Listar(id);
     ncliente.Excluir(x);
   }
+
+  public static void ClienteLogin(){
+    Console.WriteLine("----- Login do Cliente -----");
+    ListarCliente();
+    clienteLogin = new Cliente();
+    Console.Write("Informe o código do cliente para logar: ");
+    int id = int.Parse(Console.ReadLine());
+    clienteLogin = ncliente.Listar(id);
+  }
+  public static void ClienteLogout(){
+    Console.WriteLine("----- Logout do Cliente -----");
+    clienteLogin = null;
+  }
+  public static void ClienteVendaListar(){
+    Console.WriteLine("----- Venda Listar -----");
+  }
+  public static void ClienteProdutoListar(){
+    Console.WriteLine("----- Produto Listar -----");
+  }
+  public static void ClienteProdutoInserir(){
+    Console.WriteLine("----- Produto Inserir -----");
+  }
+  public static void ClienteCarrinhoVisualizar(){
+    Console.WriteLine("----- Carrinho Visualizar -----");
+  }
+  public static void ClienteCarrinhoLimpar(){
+    Console.WriteLine("----- Carrinho Limpar -----");
+  }
+  public static void ClienteCarrinhoComprar(){
+    Console.WriteLine("----- Carrinho Comprar -----");
+  }
 }
-
-
