@@ -1,56 +1,89 @@
-/*using System;
+using System;
 using System.Collections.Generic;
-using System.Collections;
 
 class Venda
   {
-    private int id, qtd;
-    private string nome;
-    private double preco;
-    private Venda venda;
-    public Venda(int id, string nome, double preco, int qtd)
-    {
-        this.id = id;
-        this.nome = nome;
-        this.preco = preco > 0 ? preco : 0;
-        this.qtd = qtd > 0 ? qtd : 0;
+    private int id;
+    private DateTime data;
+    private bool carrinho;
+    private Cliente cliente;
+    private List<VendaLivro> livros = new List<VendaLivro>();
+
+    public Venda(DateTime data, Cliente cliente){
+      this.data = data;
+      this.carrinho = true;
+      this.cliente = cliente;
     }
     public void SetId(int id)
     {
         this.id = id;
     }
-    public void SetNome(string nome)
+    public void SetDatae(DateTime data)
     {
-        this.nome = nome;
+        this.data = data;
     }
-    public void SetPreco(double preco)
+    public void SetCarrinho(bool carrinho)
     {
-        this.preco = preco > 0 ? preco : 0;
+        this.carrinho = carrinho;
     }
-    public void SetQtd(int qtd)
+    public void SetCliente(Cliente cliente)
     {
-        this.qtd = qtd > 0 ? qtd : 0;
+        this.cliente = cliente;
     }
 
     public int GetId()
     {
         return id;
     }
-    public string GetNome()
+    public DateTime GetData()
     {
-        return nome;
+        return data;
     }
-    public double GetPreco()
+    public bool GetCarrinho()
     {
-        return preco;
+        return carrinho;
     }
-    public int GetQtd()
+    public Cliente GetCliente()
     {
-        return qtd;
+        return cliente;
     }
+
     public override string ToString()
     {
-        return id + " - " + nome + " | Preco: R$" + preco.ToString("0.00") + " | Quantidade: " + qtd;
+        if(carrinho){
+          return "Compra: " + id + " - " + data.ToString("dd/MM/yyyy") + " - Cliente: " + cliente.Nome + " - carrinho";
+        }
+        else{
+          return "Compra: " + id + " - " + data.ToString("dd/MM/yyyy") + " - Cliente: " + cliente.Nome;
+        }
+    }
+
+    private VendaLivro LivroListar(Livro x){
+      foreach(VendaLivro vl in livros){
+        if(vl.GetLivro() == x){
+          return vl;
+        }
+      }
+       return null;
+    }
+
+    public List<VendaLivro> LivroListar(){
+      return livros;
+    }
+
+    private void LivroInserir(int qtd, Livro l){
+      VendaLivro livro = LivroListar(l);
+      if(livro == null){
+        livro = new VendaLivro(qtd, l);
+        livros.Add(livro);
+      }
+      else{
+        livro.SetQtd(livro.GetQtd() + qtd);
+      }
+    }
+
+    public void LivroExcluir(){
+      livros.Clear();
     }
 }
-*/
+// Sempre insere mas quando remove, remove todos.

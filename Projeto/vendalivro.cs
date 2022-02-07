@@ -4,7 +4,7 @@ class VendaLivro{
   private int qtd;
   private double preco;
   private Livro livro;
-  public VendaLivro(int qtd, double preco, Livro livro){
+  public VendaLivro(int qtd, Livro livro){
     this.qtd = qtd;
     this.preco = livro.GetPreco();
     this.livro = livro;

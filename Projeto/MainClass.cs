@@ -72,7 +72,7 @@ class MainClass
                   perfil = 0; 
                   break;
               default:
-                  Console.WriteLine("Opção invalida, tente novamente.");
+                  Console.WriteLine("Opção inválida, tente novamente.");
                   break;
           }
         }
