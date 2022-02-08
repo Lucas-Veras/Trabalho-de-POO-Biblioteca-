@@ -13,7 +13,7 @@ class MainClass
   private static Cliente clienteLogin = null;
   public static void Main()
   { 
-   // Thread.CurrentThread.CurrentCulture = new CultureInfo("pt-BR");
+   Thread.CurrentThread.CurrentCulture = new CultureInfo("pt-BR");
     int opcao = 0;
     int perfil = 0;
     Console.Write("--- Seja Bem-Vindo(a) a nossa Livraria ---");

@@ -71,7 +71,7 @@ class Venda
       return livros;
     }
 
-    private void LivroInserir(int qtd, Livro l){
+    public void LivroInserir(int qtd, Livro l){
       VendaLivro livro = LivroListar(l);
       if(livro == null){
         livro = new VendaLivro(qtd, l);
