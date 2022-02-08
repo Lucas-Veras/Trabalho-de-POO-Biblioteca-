@@ -28,6 +28,6 @@ class VendaLivro{
     return livro;
   }
   public override string ToString(){
-    return livro.GetNome() + " - Quantidade: " + qtd + " - Preço: R$" + preco.ToString("c2");
+    return livro.GetNome() + " - Quantidade: " + qtd + " - Preço: " + preco.ToString("c2");
   }
 }

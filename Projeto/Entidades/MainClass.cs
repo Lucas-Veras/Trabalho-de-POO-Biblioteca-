@@ -10,7 +10,10 @@ class MainClass
   public static NLivro nlivro = new NLivro();
 //  public static List<Venda> vendas = new List<Venda>();
   public static NCliente ncliente = new NCliente();
+  public static NVenda nvenda = new NVenda();
+
   private static Cliente clienteLogin = null;
+  public static Venda clienteVenda = null;
   public static void Main()
   { 
    Thread.CurrentThread.CurrentCulture = new CultureInfo("pt-BR");
@@ -65,9 +68,9 @@ class MainClass
               case 12:
                   ExcluirCliente();
                   break;
-          /*    case 13:
-                  Carrinho();
-                  break;*/
+              case 13:
+                  VendaListar();
+                  break;
               case 20:
                   perfil = 0; 
                   break;
@@ -96,10 +99,10 @@ class MainClass
                   ClienteVendaListar();
                   break;
               case 2:
-                  ClienteProdutoListar();
+                  ClienteLivroListar();
                   break;
               case 3:
-                  ClienteProdutoInserir();
+                  ClienteLivroInserir();
                   break;
               case 4:
                   ClienteCarrinhoVisualizar();
@@ -151,6 +154,7 @@ class MainClass
   Console.WriteLine("10 - Cliente - Inserir");
   Console.WriteLine("11 - Cliente - Atualizar");
   Console.WriteLine("12 - Cliente - Excluir");
+  Console.WriteLine("13 - Venda   - Listar");
 
 //  Console.WriteLine("13 - Carrinho");
   Console.WriteLine("20 - Voltar ");
@@ -299,21 +303,7 @@ class MainClass
       }
   }*/
   }
-  public static void ListarLivro2()
-  {
-  Console.WriteLine("------------ Lista de Livros ------------");
-  Livro[] z = nlivro.Listar();
-  if (z.Length == 0)
-  {
-      Console.WriteLine("Nenhum livro cadastrado");
-      return;
-  }
-  foreach (Livro i in z)
-  {
-      Console.WriteLine(i);
-  }
-  Console.WriteLine();
-  }
+
   public static void InserirLivro()
   {
   Console.WriteLine("------------ Adicionar Livro ------------");
@@ -323,10 +313,12 @@ class MainClass
   string nome = Console.ReadLine();
   Console.Write("Informe o seu preço: ");
   double preco = double.Parse(Console.ReadLine());
-  Console.Write("Informe a sua quantidade de paginas: ");
+  Console.Write("Informe a sua quantidade de páginas: ");
   int paginas = int.Parse(Console.ReadLine());
   Console.Write("Informe a quantidade que entrará em estoque: ");
   int qtd = int.Parse(Console.ReadLine());
+  ListarGenero();
+  Console.WriteLine("------------------------------------------");
   Console.Write("Informe o gênero do livro(caso não haja, digite 0): ");
   int generoid = int.Parse(Console.ReadLine());
   if (generoid == 0)
@@ -344,14 +336,14 @@ class MainClass
   public static void AtualizarLivro()
   {
   Console.WriteLine("----------- Atualização de Livros -----------");
-  ListarLivro2();
+  ListarLivro();
   Console.Write("Informe o id do livro para ser atualizado: ");
   int id = int.Parse(Console.ReadLine());
   Console.Write("Informe o novo nome do livro: ");
   string nome = Console.ReadLine();
   Console.Write("Informe o seu novo preço: ");
   double preco = double.Parse(Console.ReadLine());
-  Console.Write("Informe a sua quantidade de paginas: ");
+  Console.Write("Informe a sua quantidade de páginas: ");
   int paginas = int.Parse(Console.ReadLine());
   Console.Write("Informe a quantidade que entrará em estoque: ");
   int qtd = int.Parse(Console.ReadLine());
@@ -372,7 +364,7 @@ class MainClass
   public static void ExcluirLivro()
   {
   Console.WriteLine("----------- Exclusão de Livros -----------");
-  ListarLivro2();
+  ListarLivro();
   Console.Write("Informe o ID do Livro a ser excluído: ");
   int id = int.Parse(Console.ReadLine());
   Livro x = nlivro.Listar(id);
@@ -545,6 +537,22 @@ class MainClass
     ncliente.Excluir(x);
   }
 
+  public static void VendaListar(){
+    Console.WriteLine("----- Lista de Vendas -----");
+    List<Venda> vs = nvenda.Listar();
+    if (vs.Count == 0){
+      Console.WriteLine("Nenhuma venda cadastrada");
+      return;
+    }
+    foreach(Venda v in vs){
+      Console.WriteLine(v);
+      foreach (VendaLivro livro in nvenda.LivroListar(v)){
+        Console.WriteLine(" " + livro);
+      }
+    }
+    Console.WriteLine();
+  }
+
   public static void ClienteLogin(){
     Console.WriteLine("----- Login do Cliente -----");
     ListarCliente();
@@ -552,27 +560,79 @@ class MainClass
     Console.Write("Informe o código do cliente para logar: ");
     int id = int.Parse(Console.ReadLine());
     clienteLogin = ncliente.Listar(id);
+    clienteVenda = nvenda.ListarCarrinho(clienteLogin);
   }
+  
   public static void ClienteLogout(){
     Console.WriteLine("----- Logout do Cliente -----");
+    if(clienteVenda != null){
+      nvenda.Inserir(clienteVenda, true);
+    }
     clienteLogin = null;
+    clienteVenda = null;
   }
+
   public static void ClienteVendaListar(){
-    Console.WriteLine("----- Venda Listar -----");
+    Console.WriteLine("----- Minhas Compras -----");
+    List<Venda> vs = nvenda.Listar(clienteLogin);
+    if (vs.Count == 0){
+      Console.WriteLine("Nenhuma compra cadastrada");
+      return;
+    }
+    foreach(Venda v in vs){
+      Console.WriteLine(v);
+      foreach (VendaLivro livro in nvenda.LivroListar(v)){
+        Console.WriteLine(" " + livro);
+      }
+    }
+    Console.WriteLine();
   }
-  public static void ClienteProdutoListar(){
-    Console.WriteLine("----- Produto Listar -----");
+
+  public static void ClienteLivroListar(){
+    Console.WriteLine("----- Listar Livros-----");
+    ListarLivro();
   }
-  public static void ClienteProdutoInserir(){
-    Console.WriteLine("----- Produto Inserir -----");
+
+  public static void ClienteLivroInserir(){
+    Console.WriteLine("----- Inserir Livro -----");
+    ListarLivro();
+    Console.Write("Digite o código do livro a ser comprado: ");
+    int id = int.Parse(Console.ReadLine());
+    Console.Write("Digite a quantidade: ");
+    int qtd = int.Parse(Console.ReadLine());
+    Livro l = nlivro.Listar(id);
+    if(l != null){
+      if (clienteVenda == null){
+        clienteVenda = new Venda(DateTime.Now,clienteLogin);
+      }
+      nvenda.LivroInserir(clienteVenda, qtd, l);
+    }
   }
+
   public static void ClienteCarrinhoVisualizar(){
-    Console.WriteLine("----- Carrinho Visualizar -----");
+    Console.WriteLine("----- Visualizar Carrinho -----");
+    if (clienteVenda == null){
+      Console.WriteLine("Nenhum livro no carrinho");
+      return;
+    }
+    List<VendaLivro> livros = nvenda.LivroListar(clienteVenda);
+    foreach (VendaLivro livro in livros){
+      Console.WriteLine(livro);
+    }
+    Console.WriteLine();
   }
+
   public static void ClienteCarrinhoLimpar(){
-    Console.WriteLine("----- Carrinho Limpar -----");
+    if (clienteVenda != null){
+      nvenda.LivroExcluir(clienteVenda);
+    }
   }
   public static void ClienteCarrinhoComprar(){
-    Console.WriteLine("----- Carrinho Comprar -----");
+    if (clienteVenda == null){
+      Console.WriteLine("Nenhum livro no carrinho");
+      return;
+    }
+    nvenda.Inserir(clienteVenda, false);
+    clienteVenda = null;
   }
 }

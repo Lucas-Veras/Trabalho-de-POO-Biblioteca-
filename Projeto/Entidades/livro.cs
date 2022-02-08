@@ -76,11 +76,11 @@ class Livro
   {
       if (genero == null)
       {
-          return id + " - " + nome + " | Preco: R$" + preco.ToString("0.00") + " | Gênero: Sem classificação" + " | Paginas: " + paginas + " | Quantidade: " + qtd;
+          return id + " - " + nome + " | Preço: R$" + preco.ToString("0.00") + " | Gênero: Sem classificação" + " | Páginas: " + paginas + " | Quantidade: " + qtd;
       }
       else
       {
-          return id + " - " + nome + " | Preco: R$" + preco.ToString("0.00") + " | Gênero: " + genero + " | Paginas: " + paginas + " | Quantidade: " + qtd;
+          return id + " - " + nome + " | Preço: R$" + preco.ToString("0.00") + " | Gênero: " + genero + " | Páginas: " + paginas + " | Quantidade: " + qtd;
       }
   }
 }
