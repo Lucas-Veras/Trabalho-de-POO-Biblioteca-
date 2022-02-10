@@ -10,6 +10,7 @@ class NCliente{
       clientes.Sort();
       return clientes;
   }
+
   public Cliente Listar(int id)
   {
       for (int i = 0; i < clientes.Count; i++)
@@ -21,6 +22,7 @@ class NCliente{
       }
       return null;
   }
+
   public void Inserir(Cliente x)
   {
       int max = 0;
@@ -42,6 +44,7 @@ class NCliente{
       cliente_atual.Nome = x.Nome;
       cliente_atual.Nascimento = x.Nascimento;
   }
+  
   public void Excluir(Cliente x)
   {
       if (x != null){

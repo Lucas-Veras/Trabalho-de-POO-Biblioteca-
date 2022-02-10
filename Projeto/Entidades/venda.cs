@@ -14,35 +14,43 @@ class Venda
       this.carrinho = true;
       this.cliente = cliente;
     }
+
     public void SetId(int id)
     {
         this.id = id;
     }
-    public void SetDatae(DateTime data)
+
+    public void SetData(DateTime data)
     {
         this.data = data;
     }
+
     public void SetCarrinho(bool carrinho)
     {
         this.carrinho = carrinho;
     }
+
     public void SetCliente(Cliente cliente)
     {
         this.cliente = cliente;
     }
 
+
     public int GetId()
     {
         return id;
     }
+
     public DateTime GetData()
     {
         return data;
     }
+
     public bool GetCarrinho()
     {
         return carrinho;
     }
+
     public Cliente GetCliente()
     {
         return cliente;

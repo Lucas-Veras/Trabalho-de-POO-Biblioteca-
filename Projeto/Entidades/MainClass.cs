@@ -27,7 +27,7 @@ class MainClass
           perfil = MenuUsuario();
         }
         if (perfil == 1){
-          opcao = MenuVendedor();
+          opcao = MenuGerente();
           switch (opcao)
           {
               case 0:
@@ -128,7 +128,7 @@ class MainClass
   public static int MenuUsuario()
   {
   Console.WriteLine("\n------------------------------------------");
-  Console.WriteLine("01 - Entrar como Vendedor");
+  Console.WriteLine("01 - Entrar como Gerente");
   Console.WriteLine("02 - Entrar como Cliente");
   Console.WriteLine("0  - Sair");
   Console.WriteLine("------------------------------------------");
@@ -138,7 +138,7 @@ class MainClass
   return opcao;
   }
   
-  public static int MenuVendedor()
+  public static int MenuGerente()
   {
   Console.WriteLine("\n------------------------------------------");
   Console.WriteLine("01 - Gênero - Listar");

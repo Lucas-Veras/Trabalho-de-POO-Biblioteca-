@@ -6,6 +6,7 @@ class Genero
   private int id, qtdLivros, ll;
   private string nome;
   private Livro[] livros = new Livro[10];
+  
   public Genero(int id, string nome)
   {
       this.id = id;
@@ -16,6 +17,7 @@ class Genero
   {
       this.id = id;
   }
+
   public void SetNome(string nome)
   {
       this.nome = nome;
@@ -25,16 +27,19 @@ class Genero
   {
       return id;
   }
+
   public string GetNome()
   {
       return nome;
   }
+
   public Livro[] Listar()
   {
       Livro[] y = new Livro[qtdLivros];
       Array.Copy(livros, y, qtdLivros);
       return y;
   }
+
   private int Indice(Livro l)
   {
       for (int i = 0; i < ll; i++)
@@ -46,6 +51,7 @@ class Genero
       }
       return -1;
   }
+  
   public void InserirLivro(Livro x)
   {
       if (qtdLivros == livros.Length)

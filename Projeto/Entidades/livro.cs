@@ -10,6 +10,7 @@ class Livro
   private int paginas;
   private int qtd;
   private Genero genero;
+  
   public Livro(int id, string nome, double preco, int paginas, int qtd)
   {
       this.id = id;
@@ -18,30 +19,37 @@ class Livro
       this.paginas = paginas > 0 ? paginas : 0;
       this.qtd = qtd > 0 ? qtd : 0;
   }
+
   public Livro(int id, string nome, double preco, int paginas, int qtd, Genero genero) : this(id, nome, preco, paginas, qtd)
   {
       this.genero = genero;
   }
+
   public void SetId(int id)
   {
       this.id = id;
   }
+
   public void SetNome(string nome)
   {
       this.nome = nome;
   }
+
   public void SetPreco(double preco)
   {
       this.preco = preco > 0 ? preco : 0;
   }
+
   public void SetPaginas(int paginas)
   {
       this.paginas = paginas > 0 ? paginas : 0;
   }
+
   public void SetQtd(int qtd)
   {
       this.qtd = qtd > 0 ? qtd : 0;
   }
+
   public void SetGenero(Genero genero)
   {
       this.genero = genero;
@@ -51,22 +59,27 @@ class Livro
   {
       return id;
   }
+
   public string GetNome()
   {
       return nome;
   }
+
   public double GetPreco()
   {
       return preco;
   }
+
   public int GetPaginas()
   {
       return paginas;
   }
+
   public int GetQtd()
   {
       return qtd;
   }
+  
   public Genero GetGenero()
   {
       return genero;
