@@ -217,6 +217,7 @@ class MainClass
   }
   Console.WriteLine();
   }
+
   public static void InserirGenero()
   {
   Console.WriteLine("------------ Adicionar Gênero ------------");
@@ -227,6 +228,7 @@ class MainClass
   Genero x = new Genero(id, nome);
   ngenero.Inserir(x);
   }
+
   public static void AtualizarGenero()
   {
   Console.WriteLine("----------- Atualização de Gêneros -----------");
@@ -238,6 +240,7 @@ class MainClass
   Genero x = new Genero(id, nome);
   ngenero.Atualizar(x);
   }
+
   public static void ExcluirGenero()
   {
   Console.WriteLine("----------- Exclusão de Gêneros -----------");
@@ -247,6 +250,7 @@ class MainClass
   Genero x = ngenero.Listar(id);
   ngenero.Excluir(x);
   }
+
   public static void ListarLivro()
   {
   Console.WriteLine("------------ Lista de Livros ------------");
@@ -333,6 +337,7 @@ class MainClass
       nlivro.Inserir(x);
   }
   }
+
   public static void AtualizarLivro()
   {
   Console.WriteLine("----------- Atualização de Livros -----------");
@@ -361,6 +366,7 @@ class MainClass
       nlivro.Atualizar(x);
   }
   }
+
   public static void ExcluirLivro()
   {
   Console.WriteLine("----------- Exclusão de Livros -----------");
@@ -485,10 +491,6 @@ class MainClass
       }
     }*/
 
-
-
-
-
   public static void ListarCliente()
   {
     Console.WriteLine("------------ Lista de Clientes ------------");
@@ -505,6 +507,7 @@ class MainClass
     }
     Console.WriteLine();
   }
+
   public static void InserirCliente()
   {
     Console.WriteLine("------------ Adicionar Cliente ------------");
@@ -527,6 +530,7 @@ class MainClass
     Cliente x = new Cliente { Nome = nome, Nascimento = nasc };
     ncliente.Atualizar(x);
   }
+
   public static void ExcluirCliente()
   {
     Console.WriteLine("----------- Exclusão de Clientes -----------");
@@ -589,7 +593,6 @@ class MainClass
   }
 
   public static void ClienteLivroListar(){
-    Console.WriteLine("----- Listar Livros-----");
     ListarLivro();
   }
 
@@ -627,6 +630,7 @@ class MainClass
       nvenda.LivroExcluir(clienteVenda);
     }
   }
+  
   public static void ClienteCarrinhoComprar(){
     if (clienteVenda == null){
       Console.WriteLine("Nenhum livro no carrinho");
