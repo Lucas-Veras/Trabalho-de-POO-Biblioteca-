@@ -114,6 +114,9 @@ class MainClass
                   ClienteCarrinhoLimpar();
                   break;
               case 6:
+                  ClienteComentariosListar();
+                  break;
+              case 7:
                   ClienteCarrinhoComprar();
                   break;
               case 20:
@@ -192,7 +195,8 @@ class MainClass
   Console.WriteLine("03 - Inserir um produto no carrinho");
   Console.WriteLine("04 - Visualizar o carrinho");
   Console.WriteLine("05 - Limpar o carrinho");
-  Console.WriteLine("06 - Confirmar a compra");
+  Console.WriteLine("06 - Ver apenas meus comentários");
+  Console.WriteLine("07 - Confirmar a compra");
   Console.WriteLine("20 - Logout");
   Console.WriteLine("0  - Sair");
   Console.WriteLine("\n------------------------------------------");
@@ -664,5 +668,20 @@ class MainClass
     Console.WriteLine("Compra confirmada!");
     clienteVenda = null;
  //   Venda.SetComentario(comentario);
+  }
+
+  public static void ClienteComentariosListar(){
+    Console.WriteLine("----- Meus Comentários -----");
+    List<Venda> vs = nvenda.Listar(clienteLogin);
+    if (vs.Count == 0){
+      Console.WriteLine("Nenhum comentário feito");
+      return;
+    }
+    int num = 1;
+    foreach(Venda v in vs){
+      Console.WriteLine($"Comentário {num}: {v.GetComentario()}");
+      Console.WriteLine();
+      num++;
+    }
   }
 }
