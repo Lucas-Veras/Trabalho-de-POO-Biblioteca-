@@ -204,8 +204,8 @@ class MainClass
   {
   Console.WriteLine("------------ Lista de Gêneros ------------");
   Genero[] cs = ngenero.Listar();
-  GeneroIdComp x = new GeneroIdComp();
-  Array.Sort(cs,x);
+//  GeneroIdComp x = new GeneroIdComp();
+  Array.Sort(cs);
   if (cs.Length == 0)
   {
       Console.WriteLine("Nenhum Gênero cadastrado");
@@ -255,8 +255,8 @@ class MainClass
   {
   Console.WriteLine("------------ Lista de Livros ------------");
   Livro[] z = nlivro.Listar();
-  LivroIdComp x = new LivroIdComp();
-  Array.Sort(z,x);
+  //LivroIdComp x = new LivroIdComp();
+  Array.Sort(z);
   if (z.Length == 0)
   {
       Console.WriteLine("Nenhum livro cadastrado");

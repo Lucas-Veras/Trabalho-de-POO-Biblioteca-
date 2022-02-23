@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections;
 
-class Livro
+class Livro : IComparable<Livro>
 {
   private int id;
   private string nome;
@@ -85,6 +85,10 @@ class Livro
       return genero;
   }
 
+  public int CompareTo(Livro obj){
+    return this.nome.CompareTo(obj.nome);
+  }
+
   public override string ToString()
   {
       if (genero == null)
@@ -97,11 +101,11 @@ class Livro
       }
   }
 }
-
+/*
 class LivroIdComp : IComparer {
   public int Compare(object x, object y){
     Livro a = (Livro) x;
     Livro b = (Livro) y;
     return a.GetId().CompareTo(b.GetId());
   }
-}
+}*/
