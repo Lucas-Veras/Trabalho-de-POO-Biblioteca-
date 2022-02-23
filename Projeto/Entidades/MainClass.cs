@@ -71,6 +71,9 @@ class MainClass
               case 13:
                   VendaListar();
                   break;
+              case 14:
+                  VerComentarios();
+                  break;
               case 20:
                   perfil = 0; 
                   break;
@@ -155,7 +158,7 @@ class MainClass
   Console.WriteLine("11 - Cliente - Atualizar");
   Console.WriteLine("12 - Cliente - Excluir");
   Console.WriteLine("13 - Venda   - Listar");
-
+  Console.WriteLine("14 - Venda   - Ver Comentários");
 //  Console.WriteLine("13 - Carrinho");
   Console.WriteLine("20 - Voltar ");
   Console.WriteLine("0  - Sair");
@@ -554,6 +557,21 @@ class MainClass
         Console.WriteLine(" " + livro);
       }
       Console.WriteLine($"  Comentário: {v.GetComentario()}");
+      Console.WriteLine();
+    }
+  }
+
+  public static void VerComentarios(){
+    Console.WriteLine("----- Lista de Comentários -----");
+    List<Venda> vs = nvenda.Listar();
+    if (vs.Count == 0){
+      Console.WriteLine("Sem comentários");
+      return;
+    }
+    foreach(Venda v in vs){
+   //   Cliente x = v.GetCliente();
+    //  string nome = v.Get
+      Console.WriteLine($"Comentário de {v.GetCliente().Nome}: {v.GetComentario()}");
       Console.WriteLine();
     }
   }
