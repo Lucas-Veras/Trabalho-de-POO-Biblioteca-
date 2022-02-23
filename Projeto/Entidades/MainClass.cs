@@ -182,7 +182,7 @@ class MainClass
   public static int MenuClienteLogout()
   {
   Console.WriteLine("\n------------------------------------------");
-  Console.WriteLine("Bem vindo(a), "+ clienteLogin.Nome);
+  Console.WriteLine("Bem vindo(a), " + clienteLogin.Nome);
   Console.WriteLine("------------------------------------------");
   Console.WriteLine("01 - Listar minhas compras");
   Console.WriteLine("02 - Listar produtos");
@@ -553,8 +553,9 @@ class MainClass
       foreach (VendaLivro livro in nvenda.LivroListar(v)){
         Console.WriteLine(" " + livro);
       }
+      Console.WriteLine($"  Comentário: {v.GetComentario()}");
+      Console.WriteLine();
     }
-    Console.WriteLine();
   }
 
   public static void ClienteLogin(){
@@ -588,8 +589,9 @@ class MainClass
       foreach (VendaLivro livro in nvenda.LivroListar(v)){
         Console.WriteLine(" " + livro);
       }
+      Console.WriteLine($"  Comentário: {v.GetComentario()}");
+      Console.WriteLine();
     }
-    Console.WriteLine();
   }
 
   public static void ClienteLivroListar(){
@@ -637,6 +639,12 @@ class MainClass
       return;
     }
     nvenda.Inserir(clienteVenda, false);
+    Console.Write("Deixe seu comentário sobre sua compra: ");
+    string comentario = Console.ReadLine();
+    clienteVenda.SetComentario(comentario);
+    Console.WriteLine();
+    Console.WriteLine("Compra confirmada!");
     clienteVenda = null;
+ //   Venda.SetComentario(comentario);
   }
 }

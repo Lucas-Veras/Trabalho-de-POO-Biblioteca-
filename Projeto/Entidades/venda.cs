@@ -8,7 +8,8 @@ class Venda
     private bool carrinho;
     private Cliente cliente;
     private List<VendaLivro> livros = new List<VendaLivro>();
-
+    private string comentario;
+  
     public Venda(DateTime data, Cliente cliente){
       this.data = data;
       this.carrinho = true;
@@ -35,6 +36,9 @@ class Venda
         this.cliente = cliente;
     }
 
+    public void SetComentario(string comentario){
+        this.comentario = comentario;
+    }
 
     public int GetId()
     {
@@ -54,6 +58,10 @@ class Venda
     public Cliente GetCliente()
     {
         return cliente;
+    }
+
+    public string GetComentario(){
+        return comentario;
     }
 
     public override string ToString()
