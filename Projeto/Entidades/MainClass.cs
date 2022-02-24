@@ -117,6 +117,9 @@ class MainClass
                   ClienteComentariosListar();
                   break;
               case 7:
+                  ClienteAtualizarComentario();
+                  break;
+              case 8:
                   ClienteCarrinhoComprar();
                   break;
               case 20:
@@ -196,7 +199,8 @@ class MainClass
   Console.WriteLine("04 - Visualizar o carrinho");
   Console.WriteLine("05 - Limpar o carrinho");
   Console.WriteLine("06 - Ver apenas meus comentários");
-  Console.WriteLine("07 - Confirmar a compra");
+  Console.WriteLine("07 - Atualizar comentário");
+  Console.WriteLine("08 - Confirmar a compra");
   Console.WriteLine("20 - Logout");
   Console.WriteLine("0  - Sair");
   Console.WriteLine("\n------------------------------------------");
@@ -684,4 +688,65 @@ class MainClass
       num++;
     }
   }
+
+  public static void ClienteAtualizarComentario(){
+    Console.WriteLine("----- Atualizar comentário -----");
+    List<Venda> vs = nvenda.Listar(clienteLogin);
+    if (vs.Count == 0){
+      Console.WriteLine("Nenhum comentário feito");
+      return;
+    }
+    foreach(Venda v in vs){
+      Console.WriteLine(v);
+      foreach (VendaLivro livro in nvenda.LivroListar(v)){
+        Console.WriteLine(" " + livro);
+      }
+      Console.WriteLine($"  Comentário: {v.GetComentario()}");
+      Console.WriteLine();
+    }
+    Console.Write("Digite o código da compra que você deseja atualizar seu comentário: ");
+    int cod = int.Parse(Console.ReadLine());
+    foreach (Venda v in vs){
+      if (cod == v.GetId()){
+        Console.Write("Reescreva seu comentário: ");
+        string coment = Console.ReadLine();
+        v.SetComentario(coment);
+        Console.WriteLine("Atualização Concluída!");
+      }
+      else{
+        Console.WriteLine("Código inválido, tente novamente.");
+      }
+    }
+  }
+/*
+  public static void ClienteApagarComentario(){
+    Console.WriteLine("----- Atualizar comentário -----");
+    List<Venda> vs = nvenda.Listar(clienteLogin);
+    if (vs.Count == 0){
+      Console.WriteLine("Nenhum comentário feito");
+      return;
+    }
+    foreach(Venda v in vs){
+      Console.WriteLine(v);
+      foreach (VendaLivro livro in nvenda.LivroListar(v)){
+        Console.WriteLine(" " + livro);
+      }
+      Console.WriteLine($"  Comentário: {v.GetComentario()}");
+      Console.WriteLine();
+    }
+    Console.Write("Digite o código da compra que você deseja atualizar seu comentário: ");
+    int cod = int.Parse(Console.ReadLine());
+    foreach (Venda v in vs){
+      if (cod == v.GetId()){
+        Console.Write("Reescreva seu comentário: ");
+        string coment = Console.ReadLine();
+        v.SetComentario(coment);
+        Console.WriteLine("Atualização Concluída!");
+      }
+      else{
+        Console.WriteLine("Código inválido, tente novamente.");
+      }
+    }
+  }
+*/
 }
