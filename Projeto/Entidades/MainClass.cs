@@ -120,6 +120,9 @@ class MainClass
                   ClienteAtualizarComentario();
                   break;
               case 8:
+                  ClienteApagarComentario();
+                  break;
+              case 9:
                   ClienteCarrinhoComprar();
                   break;
               case 20:
@@ -199,8 +202,9 @@ class MainClass
   Console.WriteLine("04 - Visualizar o carrinho");
   Console.WriteLine("05 - Limpar o carrinho");
   Console.WriteLine("06 - Ver apenas meus comentários");
-  Console.WriteLine("07 - Atualizar comentário");
-  Console.WriteLine("08 - Confirmar a compra");
+  Console.WriteLine("07 - Atualizar/Adicionar comentário");
+  Console.WriteLine("08 - Apagar comentário");
+  Console.WriteLine("09 - Confirmar a compra");
   Console.WriteLine("20 - Logout");
   Console.WriteLine("0  - Sair");
   Console.WriteLine("\n------------------------------------------");
@@ -564,6 +568,11 @@ class MainClass
       foreach (VendaLivro livro in nvenda.LivroListar(v)){
         Console.WriteLine(" " + livro);
       }
+      if (v.GetComentario() == null){
+        Console.WriteLine("  Sem comentário");
+        Console.WriteLine();
+        continue;
+      }
       Console.WriteLine($"  Comentário: {v.GetComentario()}");
       Console.WriteLine();
     }
@@ -579,6 +588,9 @@ class MainClass
     foreach(Venda v in vs){
    //   Cliente x = v.GetCliente();
     //  string nome = v.Get
+      if (v.GetComentario() == null){
+        continue;
+      }
       Console.WriteLine($"Comentário de {v.GetCliente().Nome}: {v.GetComentario()}");
       Console.WriteLine();
     }
@@ -615,6 +627,11 @@ class MainClass
       foreach (VendaLivro livro in nvenda.LivroListar(v)){
         Console.WriteLine(" " + livro);
       }
+      if (v.GetComentario() == null){
+        Console.WriteLine("  Sem comentário");
+        Console.WriteLine();
+        continue;
+      }
       Console.WriteLine($"  Comentário: {v.GetComentario()}");
       Console.WriteLine();
     }
@@ -631,6 +648,10 @@ class MainClass
     int id = int.Parse(Console.ReadLine());
     Console.Write("Digite a quantidade: ");
     int qtd = int.Parse(Console.ReadLine());
+    if (qtd <= 0){
+      Console.WriteLine("Coloque uma quantidade maior que 0, tente novamente!");
+      return;
+    }
     Livro l = nlivro.Listar(id);
     if(l != null){
       if (clienteVenda == null){
@@ -665,13 +686,22 @@ class MainClass
       return;
     }
     nvenda.Inserir(clienteVenda, false);
-    Console.Write("Deixe seu comentário sobre sua compra: ");
-    string comentario = Console.ReadLine();
-    clienteVenda.SetComentario(comentario);
+    Console.WriteLine("Deseja deixar seu comentário na sua compra? 1-Sim | 2-Não");
+    int escolhaComent = int.Parse(Console.ReadLine());
+    if (escolhaComent == 1){
+      Console.Write("Deixe seu comentário sobre sua compra: ");
+      string comentario = Console.ReadLine();
+      clienteVenda.SetComentario(comentario);
+      Console.WriteLine();
+      Console.WriteLine("Compra confirmada!");
+      clienteVenda = null;
+    }
+    else{
     Console.WriteLine();
     Console.WriteLine("Compra confirmada!");
     clienteVenda = null;
  //   Venda.SetComentario(comentario);
+    }
   }
 
   public static void ClienteComentariosListar(){
@@ -683,6 +713,9 @@ class MainClass
     }
     int num = 1;
     foreach(Venda v in vs){
+      if (v.GetComentario() == null){
+        continue;
+      }
       Console.WriteLine($"Comentário {num}: {v.GetComentario()}");
       Console.WriteLine();
       num++;
@@ -701,10 +734,15 @@ class MainClass
       foreach (VendaLivro livro in nvenda.LivroListar(v)){
         Console.WriteLine(" " + livro);
       }
+      if (v.GetComentario() == null){
+        Console.WriteLine("  Sem comentário");
+        Console.WriteLine();
+        continue;
+      }
       Console.WriteLine($"  Comentário: {v.GetComentario()}");
       Console.WriteLine();
     }
-    Console.Write("Digite o código da compra que você deseja atualizar seu comentário: ");
+    Console.Write("Digite o código da compra que você deseja atualizar o comentário: ");
     int cod = int.Parse(Console.ReadLine());
     foreach (Venda v in vs){
       if (cod == v.GetId()){
@@ -712,18 +750,17 @@ class MainClass
         string coment = Console.ReadLine();
         v.SetComentario(coment);
         Console.WriteLine("Atualização Concluída!");
-      }
-      else{
-        Console.WriteLine("Código inválido, tente novamente.");
+        return;
       }
     }
+    Console.WriteLine("Código inválido, tente novamente.");
   }
-/*
-  public static void ClienteApagarComentario(){
-    Console.WriteLine("----- Atualizar comentário -----");
+
+public static void ClienteApagarComentario(){
+    Console.WriteLine("----- Apagar comentário -----");
     List<Venda> vs = nvenda.Listar(clienteLogin);
     if (vs.Count == 0){
-      Console.WriteLine("Nenhum comentário feito");
+      Console.WriteLine("Nenhum comentário para apagar");
       return;
     }
     foreach(Venda v in vs){
@@ -734,19 +771,20 @@ class MainClass
       Console.WriteLine($"  Comentário: {v.GetComentario()}");
       Console.WriteLine();
     }
-    Console.Write("Digite o código da compra que você deseja atualizar seu comentário: ");
+    Console.Write("Digite o código da compra que você deseja apagar o comentário: ");
     int cod = int.Parse(Console.ReadLine());
     foreach (Venda v in vs){
-      if (cod == v.GetId()){
-        Console.Write("Reescreva seu comentário: ");
-        string coment = Console.ReadLine();
-        v.SetComentario(coment);
-        Console.WriteLine("Atualização Concluída!");
+      if (v.GetComentario() == null){
+        Console.WriteLine("Não existe comentário nessa compra, tente novamente."); 
+        return;
       }
-      else{
-        Console.WriteLine("Código inválido, tente novamente.");
+      else if (cod == v.GetId()){
+        //Apagar comentário
+        v.SetComentario(null);
+        Console.WriteLine("Comentário Apagado!");
+        return;
       }
     }
+    Console.WriteLine("Código inválido, tente novamente."); 
   }
-*/
 }
