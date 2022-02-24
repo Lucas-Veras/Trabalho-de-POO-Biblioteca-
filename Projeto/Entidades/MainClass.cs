@@ -538,12 +538,21 @@ class MainClass
   {
     Console.WriteLine("----------- Atualização de Clientes -----------");
     ListarCliente();
-    Console.Write("Informe o nome do cliente a ser atualizado: ");
+    Console.Write("Digite o código do cliente a ser atualizado: ");
+    int codId = int.Parse(Console.ReadLine());
+    Cliente y = ncliente.Listar(codId);
+    if (y == null){
+      Console.WriteLine("Esse cliente não existe, tente novamente!");
+      return;
+    }
+    Console.Write("Informe o novo nome do cliente: ");
     string nome = Console.ReadLine();
-    Console.Write("Digite a data de nascimento do cliente: ");
+    Console.Write("Digite a nova data de nascimento do cliente: ");
     DateTime nasc = DateTime.Parse(Console.ReadLine());
-    Cliente x = new Cliente { Nome = nome, Nascimento = nasc };
-    ncliente.Atualizar(x);
+    y.Nome = nome;
+    y.Nascimento = nasc;
+  //  Cliente y = new Cliente { Nome = nome, Nascimento = nasc };
+    ncliente.Atualizar(y);
   }
 
   public static void ExcluirCliente()
