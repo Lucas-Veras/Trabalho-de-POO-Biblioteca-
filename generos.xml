@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ArrayOfGenero xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Genero>
+    <Id>1</Id>
+    <Nome>ação</Nome>
+  </Genero>
+  <Genero>
+    <Id>2</Id>
+    <Nome>terror</Nome>
+  </Genero>
+</ArrayOfGenero>

@@ -17,6 +17,12 @@ class MainClass
   public static void Main()
   { 
    Thread.CurrentThread.CurrentCulture = new CultureInfo("pt-BR");
+    try{
+      ngenero.Abrir();
+    }
+    catch(Exception erro){
+      Console.WriteLine(erro.Message);
+    }
     int opcao = 0;
     int perfil = 0;
     Console.Write("--- Seja Bem-Vindo(a) a nossa Livraria ---");
@@ -135,6 +141,12 @@ class MainClass
       Console.WriteLine(erro.Message);
     }
   } while(opcao != 0);
+  try{
+      ngenero.Salvar();
+  }
+  catch(Exception erro){
+    Console.WriteLine(erro.Message);
+  }
     Console.WriteLine("Obrigado! Volte sempre :)");
   }
   public static int MenuUsuario()

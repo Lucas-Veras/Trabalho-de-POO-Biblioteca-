@@ -1,12 +1,20 @@
 using System;
 using System.Collections;
 
-class Genero : IComparable<Genero>
+public class Genero : IComparable<Genero>
 {
   private int id, qtdLivros, ll;
   private string nome;
   private Livro[] livros = new Livro[10];
-  
+//Necessários para serialização
+  public int Id { get => id; set => id = value; }
+//  public int QtdLivros { get => qtdLivros; set => qtdlivro = valor; } 
+//  public int Ll { get => ll; set => ll = valor; }
+  public string Nome { get => nome; set => nome = value; }
+ // public Livro[] Livros = new Livro[10] { get => livros; set => livros = valor; }
+  public Genero() { }
+
+
   public Genero(int id, string nome)
   {
       this.id = id;

@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections;
 
-class Livro : IComparable<Livro>
+public class Livro : IComparable<Livro>
 {
   private int id;
   private string nome;

@@ -1,6 +1,9 @@
 using System;
 using System.Collections.Generic;
 using System.Collections;
+using System.Xml.Serialization;
+using System.Text;
+using System.IO;
 
 class NGenero
 {
@@ -64,5 +67,20 @@ class NGenero
       Livro[] ps = x.Listar();
       foreach (Livro p in ps)
           p.SetGenero(null);
+  }
+
+  public void Abrir(){
+    XmlSerializer xml = new XmlSerializer(typeof(Genero[]));
+    StreamReader f = new StreamReader("./generos.xml", Encoding.Default);
+    generos = (Genero[]) xml.Deserialize(f);
+    f.Close();
+    qtdGenero = generos.Length;
+  }
+
+  public void Salvar(){
+    XmlSerializer xml = new XmlSerializer(typeof(Genero[]));
+    StreamWriter f = new StreamWriter("./generos.xml", false, Encoding.Default);
+    xml.Serialize(f, Listar());
+    f.Close();
   }
 }
