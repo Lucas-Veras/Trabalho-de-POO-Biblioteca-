@@ -218,8 +218,8 @@ class MainClass
   Console.WriteLine("Bem vindo(a), " + clienteLogin.Nome);
   Console.WriteLine("------------------------------------------");
   Console.WriteLine("01 - Listar minhas compras");
-  Console.WriteLine("02 - Listar produtos");
-  Console.WriteLine("03 - Inserir um produto no carrinho");
+  Console.WriteLine("02 - Listar livros");
+  Console.WriteLine("03 - Inserir um livro no carrinho");
   Console.WriteLine("04 - Visualizar o carrinho");
   Console.WriteLine("05 - Limpar o carrinho");
   Console.WriteLine("06 - Ver apenas meus comentários");
