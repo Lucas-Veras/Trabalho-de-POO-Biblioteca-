@@ -1,14 +1,21 @@
 using System;
 
-class VendaLivro{
+public class VendaLivro{
   private int qtd;
   private double preco;
   private Livro livro;
+  private int livroId;
 
+  public int Qtd { get => qtd; set => qtd = value; }
+  public double Preco { get => preco; set => preco = value; }
+  public int LivroId { get => livroId; set => livroId = value; }
+  public VendaLivro() { }
+  
   public VendaLivro(int qtd, Livro livro){
     this.qtd = qtd;
     this.preco = livro.GetPreco();
     this.livro = livro;
+    this.livroId = livro.GetId();
   }
 
   public void SetQtd(int qtd){
@@ -21,6 +28,7 @@ class VendaLivro{
 
   public void SetLivro(Livro livro){
     this.livro = livro;
+    this.livroId = livro.GetId();
   }
 
   public int GetQtd(){

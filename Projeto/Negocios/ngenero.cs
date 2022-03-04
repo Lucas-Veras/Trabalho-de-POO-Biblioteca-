@@ -7,6 +7,10 @@ using System.IO;
 
 class NGenero
 {
+  private NGenero() { }
+  static NGenero obj = new NGenero();
+  public static NGenero Singleton { get => obj; }
+  
   private Genero[] generos = new Genero[10];
   private int qtdGenero;
 
@@ -70,17 +74,25 @@ class NGenero
   }
 
   public void Abrir(){
-    XmlSerializer xml = new XmlSerializer(typeof(Genero[]));
+    Arquivo<Genero[]> f = new Arquivo<Genero[]>();
+    generos = f.Abrir("./generos.xml"); 
+    qtdGenero = generos.Length;
+    
+  /*  XmlSerializer xml = new XmlSerializer(typeof(Genero[]));
     StreamReader f = new StreamReader("./generos.xml", Encoding.Default);
     generos = (Genero[]) xml.Deserialize(f);
     f.Close();
-    qtdGenero = generos.Length;
+    qtdGenero = generos.Length;*/
   }
 
   public void Salvar(){
+    Arquivo<Genero[]> f = new Arquivo<Genero[]>();
+    f.Salvar("./generos.xml", Listar());
+
+    /*
     XmlSerializer xml = new XmlSerializer(typeof(Genero[]));
     StreamWriter f = new StreamWriter("./generos.xml", false, Encoding.Default);
     xml.Serialize(f, Listar());
-    f.Close();
+    f.Close();*/
   }
 }

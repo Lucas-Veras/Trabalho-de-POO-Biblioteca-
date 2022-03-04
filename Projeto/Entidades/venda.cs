@@ -1,19 +1,30 @@
 using System;
 using System.Collections.Generic;
 
-class Venda
+public class Venda
   {
     private int id;
     private DateTime data;
     private bool carrinho;
     private Cliente cliente;
-    private List<VendaLivro> livros = new List<VendaLivro>();
     private string comentario;
+    private int clienteId;
   
+    private List<VendaLivro> livros = new List<VendaLivro>();
+
+    public int Id { get => id; set => id = value; }
+    public DateTime Data { get => data; set => data = value; }
+    public bool Carrinho { get => carrinho; set => carrinho = value; }
+    public string Comentario { get => comentario; set => comentario = value; }
+    public int ClienteId { get => clienteId; set => clienteId = value; }
+    public List<VendaLivro> Livros { get => livros; set => livros = value; }
+  public Venda() { }
+    
     public Venda(DateTime data, Cliente cliente){
       this.data = data;
       this.carrinho = true;
       this.cliente = cliente;
+      this.clienteId = cliente.Id;
     }
 
     public void SetId(int id)
@@ -34,6 +45,7 @@ class Venda
     public void SetCliente(Cliente cliente)
     {
         this.cliente = cliente;
+        this.clienteId = cliente.Id;
     }
 
     public void SetComentario(string comentario){

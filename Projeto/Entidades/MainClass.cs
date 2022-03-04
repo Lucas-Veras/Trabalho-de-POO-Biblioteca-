@@ -6,11 +6,11 @@ using System.Threading;
 
 class MainClass
 {
-  public static NGenero ngenero = new NGenero();
-  public static NLivro nlivro = new NLivro();
+  public static NGenero ngenero = NGenero.Singleton;
+  public static NLivro nlivro = NLivro.Singleton;
 //  public static List<Venda> vendas = new List<Venda>();
-  public static NCliente ncliente = new NCliente();
-  public static NVenda nvenda = new NVenda();
+  public static NCliente ncliente = NCliente.Singleton;
+  public static NVenda nvenda = NVenda.Singleton;
 
   private static Cliente clienteLogin = null;
   public static Venda clienteVenda = null;
@@ -19,6 +19,9 @@ class MainClass
    Thread.CurrentThread.CurrentCulture = new CultureInfo("pt-BR");
     try{
       ngenero.Abrir();
+      nlivro.Abrir();
+      ncliente.Abrir();
+      nvenda.Abrir();
     }
     catch(Exception erro){
       Console.WriteLine(erro.Message);
@@ -142,7 +145,10 @@ class MainClass
     }
   } while(opcao != 0);
   try{
-      ngenero.Salvar();
+    ngenero.Salvar();
+    nlivro.Salvar();
+    ncliente.Salvar();
+    nvenda.Salvar();
   }
   catch(Exception erro){
     Console.WriteLine(erro.Message);

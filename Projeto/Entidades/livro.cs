@@ -9,8 +9,18 @@ public class Livro : IComparable<Livro>
   private double preco;
   private int paginas;
   private int qtd;
+  private int generoId;
   private Genero genero;
-  
+
+  public int Id { get => id; set => id = value; }
+  public string Nome { get => nome; set => nome = value; }
+  public double Preco { get => preco; set => preco = value; }
+  public int Paginas { get => paginas; set => paginas = value; }
+  public int Qtd { get => qtd; set => qtd = value; }
+  public int GeneroId { get => generoId; set => generoId = value; }
+
+  public Livro() { }
+
   public Livro(int id, string nome, double preco, int paginas, int qtd)
   {
       this.id = id;
@@ -23,6 +33,7 @@ public class Livro : IComparable<Livro>
   public Livro(int id, string nome, double preco, int paginas, int qtd, Genero genero) : this(id, nome, preco, paginas, qtd)
   {
       this.genero = genero;
+      this.generoId = genero.GetId();
   }
 
   public void SetId(int id)
@@ -53,6 +64,7 @@ public class Livro : IComparable<Livro>
   public void SetGenero(Genero genero)
   {
       this.genero = genero;
+      this.generoId = genero.GetId();
   }
 
   public int GetId()

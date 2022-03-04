@@ -1,9 +1,16 @@
 using System;
 using System.Collections.Generic;
 using System.Collections;
+using System.Xml.Serialization;
+using System.Text;
+using System.IO;
 
 class NLivro
 {
+  private NLivro() { }
+  static NLivro obj = new NLivro();
+  public static NLivro Singleton { get => obj; }
+  
   private Livro[] livros = new Livro[10];
   private int ll;
 
@@ -92,5 +99,40 @@ class NLivro
       {
           g.InserirLivro(l);
       }
+  }
+
+  public void Abrir(){
+    Arquivo<Livro[]> f = new Arquivo<Livro[]>();
+    livros = f.Abrir("./livros.xml"); 
+    ll = livros.Length;
+    AtualizarGenero();
+    
+   /* XmlSerializer xml = new XmlSerializer(typeof(Livro[]));
+    StreamReader f = new StreamReader("./livros.xml", Encoding.Default);
+    livros = (Livro[]) xml.Deserialize(f);
+    f.Close();
+    ll = livros.Length;
+    AtualizarGenero();*/
+  }
+
+  private void AtualizarGenero(){
+    for(int i = 0; i < ll; i++){
+      Livro l = livros[i];
+      Genero g = NGenero.Singleton.Listar(l.GeneroId);
+      if (g != null){
+        l.SetGenero(g);
+        g.InserirLivro(l);
+      }
+    }
+  }
+
+  public void Salvar(){
+    Arquivo<Livro[]> f = new Arquivo<Livro[]>();
+    f.Salvar("./livros.xml", Listar()); 
+    
+    /*XmlSerializer xml = new XmlSerializer(typeof(Livro[]));
+    StreamWriter f = new StreamWriter("./livros.xml", false, Encoding.Default);
+    xml.Serialize(f, Listar());
+    f.Close();*/
   }
 }
