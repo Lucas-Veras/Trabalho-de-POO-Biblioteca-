@@ -83,6 +83,9 @@ class MainClass
               case 14:
                   VerComentarios();
                   break;
+              case 15:
+                  AtualizarQuantidadeEstoque();
+                  break;
               case 20:
                   perfil = 0; 
                   break;
@@ -186,7 +189,7 @@ class MainClass
   Console.WriteLine("12 - Cliente - Excluir");
   Console.WriteLine("13 - Venda   - Listar");
   Console.WriteLine("14 - Venda   - Ver Comentários");
-//  Console.WriteLine("13 - Carrinho");
+  Console.WriteLine("15 - Atualizar estoque");
   Console.WriteLine("20 - Voltar ");
   Console.WriteLine("0  - Sair");
     Console.WriteLine("------------------------------------------");
@@ -410,6 +413,18 @@ class MainClass
   nlivro.Excluir(x);
   }
 
+  public static void AtualizarQuantidadeEstoque(){
+    Console.WriteLine("----------- Atualização de Estoque -----------");
+    ListarLivro();
+    Console.Write("Informe o id do livro para ser atualizado: ");
+    int id = int.Parse(Console.ReadLine());
+    Console.Write("Informe a quantidade que entrará em estoque: ");
+    int qtd = int.Parse(Console.ReadLine());
+    Livro l = nlivro.Listar(id);
+    l.SetQtd(qtd);
+    Console.Write("Estoque atualizado!");
+  }
+  
   /*
   public static void Carrinho()
   {

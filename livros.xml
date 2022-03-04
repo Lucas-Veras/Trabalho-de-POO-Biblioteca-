@@ -2,10 +2,10 @@
 <ArrayOfLivro xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
   <Livro>
     <Id>1</Id>
-    <Nome>livro teste</Nome>
-    <Preco>60.99</Preco>
-    <Paginas>50</Paginas>
-    <Qtd>0</Qtd>
-    <GeneroId>1</GeneroId>
+    <Nome>It - A coisa</Nome>
+    <Preco>34.9</Preco>
+    <Paginas>180</Paginas>
+    <Qtd>60</Qtd>
+    <GeneroId>2</GeneroId>
   </Livro>
 </ArrayOfLivro>
