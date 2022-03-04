@@ -4,6 +4,7 @@
     <Id>1</Id>
     <Data>2022-03-03T23:56:27.587975+00:00</Data>
     <Carrinho>false</Carrinho>
+    <Comentario>amei o produto</Comentario>
     <ClienteId>1</ClienteId>
     <Livros>
       <VendaLivro>
@@ -22,6 +23,34 @@
     <Livros>
       <VendaLivro>
         <Qtd>2</Qtd>
+        <Preco>60.99</Preco>
+        <LivroId>1</LivroId>
+      </VendaLivro>
+    </Livros>
+  </Venda>
+  <Venda>
+    <Id>3</Id>
+    <Data>2022-03-04T13:39:50.910031+00:00</Data>
+    <Carrinho>false</Carrinho>
+    <Comentario>Estou esperando ansiosamente</Comentario>
+    <ClienteId>1</ClienteId>
+    <Livros>
+      <VendaLivro>
+        <Qtd>5</Qtd>
+        <Preco>60.99</Preco>
+        <LivroId>1</LivroId>
+      </VendaLivro>
+    </Livros>
+  </Venda>
+  <Venda>
+    <Id>4</Id>
+    <Data>2022-03-04T13:40:58.226178+00:00</Data>
+    <Carrinho>false</Carrinho>
+    <Comentario>gostei e amei</Comentario>
+    <ClienteId>1</ClienteId>
+    <Livros>
+      <VendaLivro>
+        <Qtd>25</Qtd>
         <Preco>60.99</Preco>
         <LivroId>1</LivroId>
       </VendaLivro>

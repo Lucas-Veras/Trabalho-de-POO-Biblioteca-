@@ -5,7 +5,7 @@
     <Nome>livro teste</Nome>
     <Preco>60.99</Preco>
     <Paginas>50</Paginas>
-    <Qtd>30</Qtd>
+    <Qtd>0</Qtd>
     <GeneroId>1</GeneroId>
   </Livro>
 </ArrayOfLivro>

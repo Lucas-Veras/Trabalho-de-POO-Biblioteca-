@@ -712,6 +712,22 @@ class MainClass
       Console.WriteLine("Nenhum livro no carrinho");
       return;
     }
+    List<VendaLivro> livros = nvenda.LivroListar(clienteVenda);
+    foreach (VendaLivro livro in livros){
+      int idLivro = livro.GetLivro().GetId();
+      Livro l = nlivro.Listar(idLivro);
+      if (l.GetQtd() < livro.GetQtd()){
+        Console.WriteLine("Não há essa quantidade no estoque, limpe o carrinho e tente novamente.");
+        return;
+      }
+    }
+    foreach (VendaLivro livro in livros){
+      int idLivro = livro.GetLivro().GetId();
+      Livro l = nlivro.Listar(idLivro);
+      int estoque = l.GetQtd();
+      estoque = l.GetQtd() - livro.GetQtd();
+      l.SetQtd(estoque);
+    }
     nvenda.Inserir(clienteVenda, false);
     Console.WriteLine("Deseja deixar seu comentário na sua compra? 1-Sim | 2-Não");
     int escolhaComent = int.Parse(Console.ReadLine());
