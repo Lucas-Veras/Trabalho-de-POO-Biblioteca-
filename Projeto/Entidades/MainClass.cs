@@ -706,7 +706,9 @@ class MainClass
       return;
     }
     foreach(Venda v in vs){
-      Console.WriteLine(v);
+      double total = v.Livros.Sum(vl => vl.Qtd*vl.Preco);
+      Console.WriteLine(v + " - Total: R$" + total.ToString("0.00"));
+    //  Console.WriteLine(v);
       foreach (VendaLivro livro in nvenda.LivroListar(v)){
         Console.WriteLine(" " + livro);
       }
@@ -751,6 +753,16 @@ class MainClass
       return;
     }
     List<VendaLivro> livros = nvenda.LivroListar(clienteVenda);
+  //  List<Venda> vs = nvenda.Listar(clienteLogin);
+  //  foreach(Venda v in vs){
+  //    double total = v.Livros.Sum(vl => vl.Qtd*vl.Preco);
+    //  Console.WriteLine(v + " - Total: R$" + total.ToString("0.00"));
+    double total = 0;
+    foreach(VendaLivro livro in livros){
+      double valor = livro.Qtd * livro.Preco;
+      total = total + valor;
+    }
+    Console.WriteLine("Total: R$" + total.ToString("0.00"));
     foreach (VendaLivro livro in livros){
       Console.WriteLine(livro);
     }
