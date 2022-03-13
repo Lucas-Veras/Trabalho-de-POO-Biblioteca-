@@ -5,7 +5,15 @@
     <Nome>It - A coisa</Nome>
     <Preco>34.9</Preco>
     <Paginas>180</Paginas>
-    <Qtd>60</Qtd>
+    <Qtd>57</Qtd>
     <GeneroId>2</GeneroId>
+  </Livro>
+  <Livro>
+    <Id>2</Id>
+    <Nome>Pequeno príncipe</Nome>
+    <Preco>19.9</Preco>
+    <Paginas>80</Paginas>
+    <Qtd>26</Qtd>
+    <GeneroId>0</GeneroId>
   </Livro>
 </ArrayOfLivro>

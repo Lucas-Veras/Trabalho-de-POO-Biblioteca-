@@ -194,6 +194,7 @@ class MainClass
   Console.WriteLine("13 - Venda   - Listar");
   Console.WriteLine("14 - Venda   - Ver Comentários");
   Console.WriteLine("15 - Atualizar estoque");
+  Console.WriteLine("16 - Resumo das vendas");
   Console.WriteLine("20 - Voltar ");
   Console.WriteLine("0  - Sair");
     Console.WriteLine("------------------------------------------");
@@ -627,20 +628,31 @@ class MainClass
   }
 
   public static void VendaListarResumo(){
-    Console.WriteLine("----- Lista de Vendas -----");
+    Console.WriteLine("----- Resumo das Vendas -----");
     List<Venda> vs = nvenda.Listar();
     if (vs.Count == 0){
       Console.WriteLine("Nenhuma venda cadastrada");
       return;
     }
+    double total = 0;
+    int qtd = 0;
+    foreach(Venda v in vs){
+      total = total + v.Livros.Sum(vl => vl.Qtd*vl.Preco);
+      qtd++;
+    }
+    
+      Console.WriteLine("Total das vendas: R$" + total.ToString("0.00"));
+    Console.WriteLine("Quantidade de vendas: " + qtd);
     var r1 = vs.Select(v => new {
       mesAno = v.Data.Month + "/" + v.Data.Year,
       total = v.Livros.Sum(vl => vl.Qtd * vl.Preco)
     });
-    foreach(var livro in r1){
-      Console.WriteLine(livro);
-    }
     Console.WriteLine();
+    Console.WriteLine("Vendas:");
+    foreach(var livro in r1){
+      Console.WriteLine("Data: " + livro.mesAno + " - Total: R$" + livro.total.ToString("0.00"));
+    }
+    
     
     /*
     foreach(Venda v in vs){
@@ -747,7 +759,7 @@ class MainClass
   }
 
   public static void ClienteCarrinhoVisualizar(){
-    Console.WriteLine("----- Visualizar Carrinho -----");
+    Console.WriteLine("------ Carrinho ------");
     if (clienteVenda == null){
       Console.WriteLine("Nenhum livro no carrinho");
       return;
@@ -789,29 +801,41 @@ class MainClass
         return;
       }
     }
-    foreach (VendaLivro livro in livros){
-      int idLivro = livro.GetLivro().GetId();
-      Livro l = nlivro.Listar(idLivro);
-      int estoque = l.GetQtd();
-      estoque = l.GetQtd() - livro.GetQtd();
-      l.SetQtd(estoque);
+    ClienteCarrinhoVisualizar();
+    Console.WriteLine("Deseja finalizar sua compra? 1-Sim | 2-Não");
+    int reposta = int.Parse(Console.ReadLine());
+    if (reposta == 2){
+      return;
     }
-    nvenda.Inserir(clienteVenda, false);
-    Console.WriteLine("Deseja deixar seu comentário na sua compra? 1-Sim | 2-Não");
-    int escolhaComent = int.Parse(Console.ReadLine());
-    if (escolhaComent == 1){
-      Console.Write("Deixe seu comentário sobre sua compra: ");
-      string comentario = Console.ReadLine();
-      clienteVenda.SetComentario(comentario);
+    else if(reposta == 1){
+      foreach (VendaLivro livro in livros){
+        int idLivro = livro.GetLivro().GetId();
+        Livro l = nlivro.Listar(idLivro);
+        int estoque = l.GetQtd();
+        estoque = l.GetQtd() - livro.GetQtd();
+        l.SetQtd(estoque);
+      }
+      nvenda.Inserir(clienteVenda, false);
+      Console.WriteLine("Deseja deixar seu comentário na sua compra? 1-Sim | 2-Não");
+      int escolhaComent = int.Parse(Console.ReadLine());
+      if (escolhaComent == 1){
+        Console.Write("Deixe seu comentário sobre sua compra: ");
+        string comentario = Console.ReadLine();
+        clienteVenda.SetComentario(comentario);
+        Console.WriteLine();
+        Console.WriteLine("Compra confirmada!");
+        clienteVenda = null;
+      }
+      else{
       Console.WriteLine();
       Console.WriteLine("Compra confirmada!");
       clienteVenda = null;
+   //   Venda.SetComentario(comentario);
+      }
+      return;
     }
     else{
-    Console.WriteLine();
-    Console.WriteLine("Compra confirmada!");
-    clienteVenda = null;
- //   Venda.SetComentario(comentario);
+      Console.WriteLine("Opção inválida, tente novamente.");
     }
   }
 
