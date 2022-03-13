@@ -1,7 +1,7 @@
 using System;
 using System.Collections;
 
-public class Genero : IComparable<Genero>
+public class Genero/* : IComparable<Genero>*/
 {
   private int id, qtdLivros, ll;
   private string nome;
@@ -84,9 +84,9 @@ public class Genero : IComparable<Genero>
       ll--;
   }
 
-  public int CompareTo(Genero obj){
+/*  public int CompareTo(Genero obj){
     return this.nome.CompareTo(obj.nome);
-  }
+  }*/
 
   public override string ToString()
   {

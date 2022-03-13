@@ -246,7 +246,7 @@ class MainClass
   Console.WriteLine("------------ Lista de Gêneros ------------");
   Genero[] cs = ngenero.Listar();
 //  GeneroIdComp x = new GeneroIdComp();
-  Array.Sort(cs);
+//  Array.Sort(cs);
   if (cs.Length == 0)
   {
       Console.WriteLine("Nenhum Gênero cadastrado");

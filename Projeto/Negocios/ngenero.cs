@@ -4,6 +4,7 @@ using System.Collections;
 using System.Xml.Serialization;
 using System.Text;
 using System.IO;
+using System.Linq;
 
 class NGenero
 {
@@ -25,12 +26,14 @@ class NGenero
   }
   public Genero[] Listar()
   {
-      Genero[] x = new Genero[qtdGenero];
+    /*  Genero[] x = new Genero[qtdGenero];
       Array.Copy(generos, x, qtdGenero);
-      return x;
+      return x;*/
+      return generos.Take(qtdGenero).OrderBy(x => x.GetNome()).ToArray();
   }
   public Genero Listar(int id)
   {
+    /*
       for (int i = 0; i < qtdGenero; i++)
       {
           if (generos[i].GetId() == id)
@@ -39,6 +42,10 @@ class NGenero
           }
       }
       return null;
+    */
+    var x = generos.Where(obj => obj.GetId() == id);
+    if(x.Count() == 0) return null;
+    return x.First();
   }
   public void Atualizar(Genero x)
   {

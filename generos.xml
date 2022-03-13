@@ -5,6 +5,10 @@
     <Nome>ação</Nome>
   </Genero>
   <Genero>
+    <Id>3</Id>
+    <Nome>Ficção</Nome>
+  </Genero>
+  <Genero>
     <Id>2</Id>
     <Nome>terror</Nome>
   </Genero>
