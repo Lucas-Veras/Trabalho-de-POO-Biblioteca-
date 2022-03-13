@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections;
 using System.Globalization;
 using System.Threading;
+using System.Linq;
 
 class MainClass
 {
@@ -85,6 +86,9 @@ class MainClass
                   break;
               case 15:
                   AtualizarQuantidadeEstoque();
+                  break;
+              case 16:
+                  VendaListarResumo();
                   break;
               case 20:
                   perfil = 0; 
@@ -606,7 +610,9 @@ class MainClass
       return;
     }
     foreach(Venda v in vs){
-      Console.WriteLine(v);
+      double total = v.Livros.Sum(vl => vl.Qtd*vl.Preco);
+      Console.WriteLine(v + " - Total: R$" + total.ToString("0.00"));
+      //Console.WriteLine(v);
       foreach (VendaLivro livro in nvenda.LivroListar(v)){
         Console.WriteLine(" " + livro);
       }
@@ -620,6 +626,41 @@ class MainClass
     }
   }
 
+  public static void VendaListarResumo(){
+    Console.WriteLine("----- Lista de Vendas -----");
+    List<Venda> vs = nvenda.Listar();
+    if (vs.Count == 0){
+      Console.WriteLine("Nenhuma venda cadastrada");
+      return;
+    }
+    var r1 = vs.Select(v => new {
+      mesAno = v.Data.Month + "/" + v.Data.Year,
+      total = v.Livros.Sum(vl => vl.Qtd * vl.Preco)
+    });
+    foreach(var livro in r1){
+      Console.WriteLine(livro);
+    }
+    Console.WriteLine();
+    
+    /*
+    foreach(Venda v in vs){
+      Console.WriteLine(v);
+      foreach (VendaLivro livro in nvenda.LivroListar(v)){
+        Console.WriteLine(" " + livro);
+      }
+      if (v.GetComentario() == null){
+        Console.WriteLine("  Sem comentário");
+        Console.WriteLine();
+        continue;
+      }
+      Console.WriteLine($"  Comentário: {v.GetComentario()}");
+      Console.WriteLine();
+    }*/
+    
+  }
+
+
+  
   public static void VerComentarios(){
     Console.WriteLine("----- Lista de Comentários -----");
     List<Venda> vs = nvenda.Listar();
